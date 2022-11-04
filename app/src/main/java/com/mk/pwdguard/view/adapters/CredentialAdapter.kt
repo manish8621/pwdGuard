@@ -1,10 +1,7 @@
 package com.mk.pwdguard.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,18 +18,30 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
 
     //viewHolder
     class ItemViewHolder private constructor(val binding:ListItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(credential: Credential,clickListener:(( credential: Credential)->Unit)?)
+        fun bind(
+            credential: Credential,
+            clickListener: ((credential: Credential) -> Unit)?,
+            deleteBtnClickListener: ((credential: Credential) -> Unit)?,
+            copyBtnClickListener: ((credential: Credential) -> Unit)?
+        )
         {
             binding.credential = credential
+
             //if clicklistener is not null
             clickListener?.let {
                 binding.root.setOnClickListener{
                     clickListener.invoke(credential)
                 }
             }
-            binding.deleteBtn.setOnClickListener{
-                Toast.makeText(binding.root.context, "Delete button clicked", Toast.LENGTH_SHORT).show()
-                binding.root.visibility = View.INVISIBLE
+             deleteBtnClickListener?.let {
+                binding.deleteBtn.setOnClickListener{
+                    deleteBtnClickListener.invoke(credential)
+                }
+            }
+            copyBtnClickListener?.let {
+                binding.copyBtn.setOnClickListener{
+                    copyBtnClickListener.invoke(credential)
+                }
             }
 
         }
@@ -48,7 +57,7 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
     {
-        holder.bind(getItem(position), clickListener)
+        holder.bind(getItem(position), clickListener,deleteBtnClickListener,copyBtnClickListener)
     }
 
     fun setOnclickListener(clickListener:(( credential:Credential)->Unit)){

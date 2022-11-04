@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mk.pwdguard.R
@@ -44,7 +45,12 @@ class ShowPwdFragment : Fragment() {
         adapter.setOnclickListener {
             findNavController().navigate(ShowPwdFragmentDirections.actionShowPwdFragmentToStorePwdFragment(it.id))
         }
-
+        adapter.setDeleteBtnClickListener {
+            viewModel.delete(it.id)
+        }
+        adapter.setCopyBtnClickListener {
+            Toast.makeText(context, "Copied !", Toast.LENGTH_SHORT).show()
+        }
         binding.recyclerView.adapter = adapter
         viewModel.credentialList.observe(viewLifecycleOwner){
             it?.let {
