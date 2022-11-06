@@ -2,6 +2,7 @@ package com.mk.pwdguard.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
 import com.mk.pwdguard.model.domain.DomainModels
@@ -13,14 +14,22 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     val repository=Repository(database)
     val authDetail = repository.authDetail
 
-    fun putPasswd(passwd:String){
-        viewModelScope.launch{ repository.putPasswd(DomainModels.Auth(passwd)) }
+    var newPasswd=MutableLiveData("")
+    var repeatPasswd=MutableLiveData("")
+    var passwd=MutableLiveData("")
+
+    fun putPasswd(){
+        newPasswd.value?.let{
+            viewModelScope.launch { repository.putPasswd(DomainModels.Auth(it)) }
+        }
     }
 
-    fun passwdMatches(passwd:String) :Boolean{
+    fun passwdMatches() :Boolean{
         authDetail.value?.let {
-            if(it.isNotEmpty())
-                return (it.get(0).password == passwd)
+            if(passwd.value!=null){
+                if (it.isNotEmpty())
+                    return (it.get(0).password == passwd.value)
+            }
         }
         return false
     }

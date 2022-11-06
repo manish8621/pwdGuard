@@ -1,6 +1,7 @@
 package com.mk.pwdguard.viewModel
 
 import android.app.Application
+import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -18,6 +19,10 @@ class StorePwdViewModel(application: Application, id: Long) :AndroidViewModel(ap
     private val repository = Repository(database)
 
     val credential = MutableLiveData<Credential>(Credential(title = "", site = "", username = "", password = "", lastUpdated = Date()))
+
+    //for 2 way data binding
+    var repeatPassword = MutableLiveData("")
+
 
     fun getCredentialToUpdate(id: Long) {
         viewModelScope.launch {

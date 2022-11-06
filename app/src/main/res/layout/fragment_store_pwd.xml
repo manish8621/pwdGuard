@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="text"
-                android:text="@{viewModel.credential.title}"
+                android:text="@={viewModel.credential.title}"
                 android:textColorHint="#757575" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:text="@={viewModel.credential.site}"
                 android:inputType="text"
                 android:textColorHint="#757575" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:text="@={viewModel.credential.username}"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:text="@={viewModel.credential.password}"
                 android:inputType="textPassword"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -115,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:text="@={viewModel.repeatPassword}"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 

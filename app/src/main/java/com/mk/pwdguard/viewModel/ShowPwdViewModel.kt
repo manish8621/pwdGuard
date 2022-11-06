@@ -1,6 +1,7 @@
 package com.mk.pwdguard.viewModel
 
 import android.app.Application
+import androidx.databinding.Bindable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,7 @@ class ShowPwdViewModel(application: Application) :AndroidViewModel(application) 
     private val database = CredentialDb.getInstance(application)
     private val repository = Repository(database)
     val credentialList = repository.credentials
+
     fun delete(id:Long){
         viewModelScope.launch {
             withContext(Dispatchers.IO){

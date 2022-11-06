@@ -7,6 +7,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import com.mk.pwdguard.model.decrypt
 import com.mk.pwdguard.model.domain.DomainModels
 import java.util.Date
 
@@ -38,13 +39,13 @@ fun DatabaseEntities.Credential.asDomainModel():DomainModels.Credential{
         title = title,
         site = site,
         username = username,
-        password = password,
+        password = decrypt(password),
         lastUpdated = Date(lastUpdated)
     )
 }
 fun DatabaseEntities.Auth.asDomainModel():DomainModels.Auth{
     return DomainModels.Auth(
-        password
+        decrypt(password)
     )
 }
 fun List<DatabaseEntities.Auth>.toDomainModels():List<DomainModels.Auth>{

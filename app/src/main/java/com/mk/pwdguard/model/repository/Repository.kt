@@ -1,5 +1,6 @@
 package com.mk.pwdguard.model.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.mk.pwdguard.model.db.*
 import com.mk.pwdguard.model.domain.DomainModels
@@ -21,12 +22,15 @@ class Repository(private val credentialDb: CredentialDb) {
         it.toDomainModels()
     }
 
+
     suspend fun insertIntoDb(credential:DomainModels.Credential){
         withContext(Dispatchers.IO){
+
             credentialDb.credentialDao.insert(credential.asDataBaseModel())
         }
     }
 
+    //not used
     suspend fun getAllCredentials()= withContext(Dispatchers.IO){
         credentialDb.credentialDao.getCredentials()
     }

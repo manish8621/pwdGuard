@@ -19,8 +19,6 @@ import java.util.*
 
 class StorePwdFragment : Fragment() {
 
-
-    // do Two way databainding ####################
     lateinit var binding: FragmentStorePwdBinding
     lateinit var viewModel : StorePwdViewModel
     val args : StorePwdFragmentArgs by navArgs()
@@ -50,13 +48,14 @@ class StorePwdFragment : Fragment() {
         if(args.id>0)
             viewModel.getCredentialToUpdate(args.id)
         //set observers if update mode
-
+        viewModel.credential.observe(viewLifecycleOwner){
+            Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+        }
         setOnClickListeners()
     }
 
     private fun setOnClickListeners() {
         binding.saveBtn.setOnClickListener{
-            getInputs()
             if(viewModel.isNotEmptyCredentials()){
                 if(binding.passwordEt.text.toString() == binding.repeatPasswordEt.text.toString()) {
                     viewModel.addCredentialToDb()
@@ -71,7 +70,7 @@ class StorePwdFragment : Fragment() {
     }
 
     private fun getInputs(){
-        viewModel.credential.value?.also {
+        viewModel.credential.value?.let {
             it.title = binding.titleEt.text.toString()
             it.site = binding.siteEt.text.toString()
             it.username = binding.usernameEt.text.toString()

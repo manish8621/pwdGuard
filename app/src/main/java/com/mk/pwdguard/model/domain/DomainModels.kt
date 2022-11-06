@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.mk.pwdguard.model.db.DatabaseEntities
+import com.mk.pwdguard.model.encrypt
 import java.util.*
 
 class DomainModels {
@@ -27,11 +28,13 @@ fun DomainModels.Credential.asDataBaseModel():DatabaseEntities.Credential{
         id = id,
         title = title,
         site = site,
-        username = username,
-        password = password,
+        username = encrypt(username),
+        password = encrypt(password),
         lastUpdated = lastUpdated.time
     )
 }
 fun DomainModels.Auth.asDatabaseModel():DatabaseEntities.Auth{
-    return DatabaseEntities.Auth(password)
+    return DatabaseEntities.Auth(
+        encrypt(password)
+    )
 }
