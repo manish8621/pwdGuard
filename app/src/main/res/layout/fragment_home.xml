@@ -14,7 +14,7 @@
         <Button
             android:id="@+id/add_btn"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="#90CAF9"
             android:text="Add"
             android:textColor="@color/black"
@@ -31,7 +31,7 @@
         <Button
             android:id="@+id/show_btn"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="#90CAF9"
             android:text="Show"
             android:textColor="@color/black"

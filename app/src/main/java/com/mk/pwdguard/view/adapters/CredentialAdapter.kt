@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mk.pwdguard.databinding.ListItemBinding
 import com.mk.pwdguard.model.domain.DomainModels.*
+import com.mk.pwdguard.model.smartShrink
 
 class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolder>(DiffUtilCallBack()){
 
 
     //lambda
-    private var copyBtnClickListener: ((credential: Credential) -> Unit)? = null
-    private var deleteBtnClickListener: ((credential: Credential) -> Unit)? = null
+    private var copyBtnClickListener: ((text: String) -> Unit)? = null
+    private var deleteBtnClickListener: ((id: Long) -> Unit)? = null
     private var clickListener:(( credential:Credential)->Unit)? = null
 
     //viewHolder
@@ -21,11 +22,17 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
         fun bind(
             credential: Credential,
             clickListener: ((credential: Credential) -> Unit)?,
-            deleteBtnClickListener: ((credential: Credential) -> Unit)?,
-            copyBtnClickListener: ((credential: Credential) -> Unit)?
+            deleteBtnClickListener: ((id: Long) -> Unit)?,
+            copyBtnClickListener: ((text: String) -> Unit)?
         )
         {
-            binding.credential = credential
+
+
+            //shorten to avoid overflow
+            binding.titleTv.text = credential.title.smartShrink()
+            binding.usernameTv.text = credential.username.smartShrink()
+            binding.passwordTv.text = credential.password.smartShrink()
+            binding.siteTv.text = credential.site.smartShrink()
 
             //if clicklistener is not null
             clickListener?.let {
@@ -35,12 +42,15 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
             }
              deleteBtnClickListener?.let {
                 binding.deleteBtn.setOnClickListener{
-                    deleteBtnClickListener.invoke(credential)
+                    deleteBtnClickListener.invoke(credential.id)
                 }
             }
             copyBtnClickListener?.let {
-                binding.copyBtn.setOnClickListener{
-                    copyBtnClickListener.invoke(credential)
+                binding.copyUsernameBtn.setOnClickListener{
+                    copyBtnClickListener.invoke(credential.username)
+                }
+                binding.copyPasswordBtn.setOnClickListener{
+                    copyBtnClickListener.invoke(credential.password)
                 }
             }
 
@@ -63,10 +73,10 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
     fun setOnclickListener(clickListener:(( credential:Credential)->Unit)){
         this.clickListener = clickListener
     }
-    fun setDeleteBtnClickListener(clickListener:(( credential:Credential)->Unit)){
+    fun setDeleteBtnClickListener(clickListener:(( id:Long)->Unit)){
         this.deleteBtnClickListener = clickListener
     }
-    fun setCopyBtnClickListener(clickListener:(( credential:Credential)->Unit)){
+    fun setCopyBtnClickListener(clickListener:(( text:String)->Unit)){
         this.copyBtnClickListener = clickListener
     }
 }

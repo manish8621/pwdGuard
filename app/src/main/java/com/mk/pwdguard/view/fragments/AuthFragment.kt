@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.mk.pwdguard.MainActivity
 import com.mk.pwdguard.R
 import com.mk.pwdguard.databinding.FragmentAuthBinding
 import com.mk.pwdguard.viewModel.AuthViewModel
@@ -60,6 +61,7 @@ class AuthFragment : Fragment() {
 
 
     private fun setOnClickListeners() {
+
         //to create password
         binding.submitBtn.setOnClickListener {
                 val newPasswd = binding.newPasswordEt.text.toString()
@@ -72,12 +74,19 @@ class AuthFragment : Fragment() {
                 else
                 {
                     if(newPasswd == repeatPasswd) {
-                        viewModel.putPasswd()
+                        if(newPasswd.length<4){
+                            Toast.makeText(context, "minimum password size is 4", Toast.LENGTH_SHORT).show()
+                            return@setOnClickListener
+                        }
+                        viewModel.addNewPasswd()
                         findNavController().navigate(R.id.action_authFragment_to_homeFragment)
                         Toast.makeText(context, "Password added", Toast.LENGTH_SHORT).show()
                     }
                     else
-                        Toast.makeText(context, "Passwords not matching", Toast.LENGTH_SHORT).show()
+                        animateError(it){
+                            Toast.makeText(context, "Passwords not matching", Toast.LENGTH_SHORT).show()
+                        }
+
                 }
             }
         //for unlock
@@ -90,44 +99,59 @@ class AuthFragment : Fragment() {
                     return@setOnClickListener
                 }
                 if(viewModel.passwdMatches()) {
+                    //set label
                     (it as Button).text = getString(R.string.unlocked)
-                    it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.green))  }.animate().translationY(animationDistance).setDuration(animationDuration).withEndAction {
-                        it.animate().translationY(0.0F).setDuration(animationDuration).withEndAction {
-                            it.animate().translationY(animationDistance).setDuration(animationDuration).withEndAction {
-                                it.animate().translationY(0.0F).setDuration(animationDuration).withEndAction {
-                                    findNavController().navigate(R.id.action_authFragment_to_homeFragment)
-                                }.start()
-                            }.start()
-                        }.start()
-                    }.start()
-
+                    //animate and go to next page
+                    animateSuccess(it){
+                        findNavController().navigate(R.id.action_authFragment_to_homeFragment)
+                    }
                         Toast.makeText(context, "Unlock success", Toast.LENGTH_SHORT).show()
                 }
                 else {
-
-                    Toast.makeText(context, "Incorrect Password !", Toast.LENGTH_SHORT).show()
+                    //error label
                     (it as Button).text = getString(R.string.try_again)
-                    animateError(it)
+                    animateError(it){
+                        Toast.makeText(context, "Incorrect Password !", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+        //forgot password
+        binding.fingerprintBtn.setOnClickListener {
+            (activity as MainActivity).biometricAuth {
+                if(it) {
+                    findNavController().navigate(R.id.action_authFragment_to_homeFragment)
+                    Toast.makeText(context, "unlocked", Toast.LENGTH_SHORT).show()
+                }
+                else Toast.makeText(context, "authentication failed", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    private fun animateSuccess(it:View) {
+    private fun animateSuccess(it:View,endAction:()->Unit) {
         it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.green))  }.animate().translationY(animationDistance).setDuration(animationDuration).withEndAction {
             it.animate().translationY(0.0F).setDuration(animationDuration).withEndAction {
                 it.animate().translationY(animationDistance).setDuration(animationDuration).withEndAction {
-                    it.animate().translationY(0.0F).setDuration(animationDuration).start()
+                    it.animate()
+                        .translationY(0.0F)
+                        .setDuration(animationDuration)
+                        .withEndAction(endAction)
+                        .start()
                 }.start()
             }.start()
         }.start()
+
+
     }
 
-    private fun animateError(it: View) {
+    private fun animateError(it: View,endAction:()->Unit) {
 
         it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.red))  }.animate().translationX(animationDistance).setDuration(animationDuration).withEndAction {
             it.animate().translationX(0.0F).setDuration(animationDuration).withEndAction {
                 it.animate().translationX(animationDistance).setDuration(animationDuration).withEndAction {
-                    it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.light_blue))}.animate().translationX(0.0F).setDuration(animationDuration).start()
+                    it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.light_blue))}.animate()
+                        .translationX(0.0F).setDuration(animationDuration)
+                        .withEndAction(endAction)
+                        .start()
                 }.start()
             }.start()
         }.start()

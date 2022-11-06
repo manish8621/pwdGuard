@@ -50,15 +50,12 @@ class ShowPwdFragment : Fragment() {
             findNavController().navigate(ShowPwdFragmentDirections.actionShowPwdFragmentToStorePwdFragment(it.id))
         }
         adapter.setDeleteBtnClickListener {
-            viewModel.delete(it.id)
+            viewModel.delete(it)
         }
-        adapter.setCopyBtnClickListener {
-//            //copy
-//            val clipBoardManager = (activity as MainActivity).getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-//            val items = arrayListOf(Item(it.username), Item(it.password))
-//            val clipData = ClipData(ClipDescription("", arrayOf<String>(ClipDescription.MIMETYPE_TEXT_PLAIN)), items)
-//            clipBoardManager.setPrimaryClip(clipData)
-            Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+        adapter.setCopyBtnClickListener { text->
+            val clipBoardManager = (activity as MainActivity).getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipBoardManager.setPrimaryClip(ClipData.newPlainText("login detail",text))
+            Toast.makeText(context, "Copied $text", Toast.LENGTH_SHORT).show()
         }
         binding.recyclerView.adapter = adapter
         viewModel.credentialList.observe(viewLifecycleOwner){

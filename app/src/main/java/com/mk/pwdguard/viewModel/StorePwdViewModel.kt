@@ -32,7 +32,7 @@ class StorePwdViewModel(application: Application, id: Long) :AndroidViewModel(ap
         }
     }
 
-    fun addCredentialToDb(){
+    fun addCredentialToDb(endAction:()->Unit){
         credential.value?.let{
             //add current date
             it.lastUpdated = Date()
@@ -42,6 +42,7 @@ class StorePwdViewModel(application: Application, id: Long) :AndroidViewModel(ap
                     repository.update(it)
                 else
                     repository.insertIntoDb(it)
+                endAction()
             }
         }
     }

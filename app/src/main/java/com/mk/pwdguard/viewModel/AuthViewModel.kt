@@ -17,8 +17,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     var newPasswd=MutableLiveData("")
     var repeatPasswd=MutableLiveData("")
     var passwd=MutableLiveData("")
-
-    fun putPasswd(){
+//    var askPasswd = MutableLiveData(true)
+    fun addNewPasswd(){
         newPasswd.value?.let{
             viewModelScope.launch { repository.putPasswd(DomainModels.Auth(it)) }
         }

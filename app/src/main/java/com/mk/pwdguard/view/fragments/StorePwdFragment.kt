@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mk.pwdguard.MainActivity
 import com.mk.pwdguard.R
@@ -15,6 +16,10 @@ import com.mk.pwdguard.databinding.FragmentStorePwdBinding
 import com.mk.pwdguard.model.domain.DomainModels
 import com.mk.pwdguard.viewModel.StorePwdViewModel
 import com.mk.pwdguard.viewModel.StorePwdViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class StorePwdFragment : Fragment() {
@@ -47,18 +52,23 @@ class StorePwdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if(args.id>0)
             viewModel.getCredentialToUpdate(args.id)
-        //set observers if update mode
-        viewModel.credential.observe(viewLifecycleOwner){
-            Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
-        }
+//        //set observers if update mode
+//        viewModel.credential.observe(viewLifecycleOwner){
+//            Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+//        }
         setOnClickListeners()
     }
 
     private fun setOnClickListeners() {
         binding.saveBtn.setOnClickListener{
             if(viewModel.isNotEmptyCredentials()){
-                if(binding.passwordEt.text.toString() == binding.repeatPasswordEt.text.toString()) {
-                    viewModel.addCredentialToDb()
+                if(binding.pwdEt.text.toString() == binding.repeatPwdEt.text.toString()) {
+                    //navigate up after saving
+                    viewModel.addCredentialToDb{
+                        CoroutineScope(Dispatchers.Main).launch {
+                            findNavController().navigateUp()
+                        }
+                    }
                     Toast.makeText(context, if(args.id>0) "Credential updated" else "Credential added", Toast.LENGTH_SHORT).show()
                 }
                 else
@@ -74,7 +84,7 @@ class StorePwdFragment : Fragment() {
             it.title = binding.titleEt.text.toString()
             it.site = binding.siteEt.text.toString()
             it.username = binding.usernameEt.text.toString()
-            it.password = binding.passwordEt.text.toString()
+            it.password = binding.pwdEt.text.toString()
         }
     }
     private fun idExists(id:Long){

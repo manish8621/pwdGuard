@@ -8,4 +8,9 @@
     <string name="try_again">Try Again</string>
     <string name="success">success</string>
     <string name="unlocked">unlocked</string>
+    <string name="password">Password</string>
+    <string name="title">Title</string>
+    <string name="site">Site</string>
+    <string name="username">Username</string>
+    <string name="repeat_password">Repeat password</string>
 </resources>

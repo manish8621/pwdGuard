@@ -8,126 +8,132 @@
             name="viewModel"
             type="com.mk.pwdguard.viewModel.StorePwdViewModel" />
     </data>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".view.fragments.StorePwdFragment"
         android:padding="16dp"
         >
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/title_layout"
 
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
+            android:hint="@string/title"
+            android:labelFor="@id/title_et"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/title" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/title_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:inputType="text"
                 android:text="@={viewModel.credential.title}"
-                android:textColorHint="#757575" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/title_tv"
+                />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/site_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/site_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Site"
+            android:hint="@string/site"
+            android:labelFor="@id/site_et"
+            android:text="@string/site"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_layout">
+            app:layout_constraintTop_toBottomOf="@id/title_et" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/site_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="@={viewModel.credential.site}"
-                android:inputType="text"
-                android:textColorHint="#757575" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/site_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={viewModel.credential.site}"
+            app:layout_constraintTop_toBottomOf="@id/site_tv"
+            />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/username_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Username"
+            android:hint="@string/username"
+            android:labelFor="@id/username_et"
+            android:text="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/site_layout">
+            app:layout_constraintTop_toBottomOf="@id/site_et" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="@={viewModel.credential.username}"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/username_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={viewModel.credential.username}"
+            android:textColorHint="#757575"
+            android:textColorHighlight="@color/light_blue"
+            app:layout_constraintTop_toBottomOf="@id/username_tv"
+            />
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/password_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password"
-            app:endIconMode="password_toggle"
+            android:hint="@string/password"
+            android:labelFor="@id/pwd_et"
+            android:text="@string/password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_layout">
+            app:layout_constraintTop_toBottomOf="@id/username_et" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="@={viewModel.credential.password}"
-                android:inputType="textPassword"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/pwd_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={viewModel.credential.password}"
+            android:textColorHint="#757575"
+            android:textColorHighlight="@color/light_blue"
+            app:layout_constraintTop_toBottomOf="@id/password_tv"
+            />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/repeat_password_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/repeat_pwd_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Repeat password"
-            app:endIconMode="password_toggle"
+            android:hint="@string/repeat_password"
+            android:labelFor="@id/repeat_pwd_et"
+            android:text="@string/repeat_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password_layout">
+            app:layout_constraintTop_toBottomOf="@id/pwd_et" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/repeat_password_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="@={viewModel.repeatPassword}"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+        <EditText
+            android:id="@+id/repeat_pwd_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="@={viewModel.repeatPassword}"
+            android:textColorHint="#757575"
+            android:textColorHighlight="@color/light_blue"
+            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_tv"
+            />
         <Button
             android:id="@+id/save_btn"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#CFCFCF"
+            android:backgroundTint="@color/light_blue"
             android:shadowColor="@color/black"
             android:shadowRadius="2"
             android:text="@string/save"
@@ -136,7 +142,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/repeat_password_layout" />
+            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_et"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -38,7 +38,7 @@ fun DatabaseEntities.Credential.asDomainModel():DomainModels.Credential{
         id = id,
         title = title,
         site = site,
-        username = username,
+        username = decrypt(username),
         password = decrypt(password),
         lastUpdated = Date(lastUpdated)
     )
