@@ -21,6 +21,11 @@ class DatabaseEntities{
         val password: String,
         @ColumnInfo(name = "last_updated") var lastUpdated: Long,
     )
+    @Entity(tableName = "auth_table")
+    data class Auth(
+        @PrimaryKey
+        val password: String
+    )
 }
 fun List<DatabaseEntities.Credential>.asDomainModels():List<DomainModels.Credential>{
     return map{
@@ -36,4 +41,14 @@ fun DatabaseEntities.Credential.asDomainModel():DomainModels.Credential{
         password = password,
         lastUpdated = Date(lastUpdated)
     )
+}
+fun DatabaseEntities.Auth.asDomainModel():DomainModels.Auth{
+    return DomainModels.Auth(
+        password
+    )
+}
+fun List<DatabaseEntities.Auth>.toDomainModels():List<DomainModels.Auth>{
+    return map{
+        it.asDomainModel()
+    }
 }

@@ -30,10 +30,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/title_et"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="@{viewModel.credential.title}"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="text"
+                android:text="@{viewModel.credential.title}"
                 android:textColorHint="#757575" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +51,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/site_et"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="text"
                 android:textColorHint="#757575" />
@@ -71,7 +71,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username_et"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +92,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_et"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="textPassword"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -113,7 +113,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/repeat_password_et"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -19,6 +19,8 @@ import java.util.*
 
 class StorePwdFragment : Fragment() {
 
+
+    // do Two way databainding ####################
     lateinit var binding: FragmentStorePwdBinding
     lateinit var viewModel : StorePwdViewModel
     val args : StorePwdFragmentArgs by navArgs()
@@ -76,7 +78,7 @@ class StorePwdFragment : Fragment() {
             it.password = binding.passwordEt.text.toString()
         }
     }
-    private fun add(){
+    private fun idExists(id:Long){
 
     }
 

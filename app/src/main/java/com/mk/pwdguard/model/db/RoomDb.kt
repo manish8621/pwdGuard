@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.room.*
 
-@Database(entities = [DatabaseEntities.Credential::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseEntities.Credential::class,DatabaseEntities.Auth::class], version = 1, exportSchema = false)
 abstract class CredentialDb:RoomDatabase() {
     abstract val credentialDao:CredentialDao
     companion object{
@@ -20,9 +20,7 @@ abstract class CredentialDb:RoomDatabase() {
                 INSTANCE = instance
             }
                 return INSTANCE as CredentialDb
-
         }
-
     }
 
 }

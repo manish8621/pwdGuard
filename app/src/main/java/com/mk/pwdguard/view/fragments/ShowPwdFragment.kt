@@ -1,5 +1,10 @@
 package com.mk.pwdguard.view.fragments
 
+import android.content.ClipData
+import android.content.ClipData.Item
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,15 +13,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.mk.pwdguard.R
-import com.mk.pwdguard.databinding.FragmentHomeBinding
+import com.mk.pwdguard.MainActivity
 import com.mk.pwdguard.databinding.FragmentShowPwdBinding
-import com.mk.pwdguard.databinding.FragmentStorePwdBinding
 import com.mk.pwdguard.view.adapters.CredentialAdapter
 import com.mk.pwdguard.viewModel.ShowPwdViewModel
 import com.mk.pwdguard.viewModel.ShowPwdViewModelFactory
-import com.mk.pwdguard.viewModel.StorePwdViewModel
-import com.mk.pwdguard.viewModel.StorePwdViewModelFactory
 
 class ShowPwdFragment : Fragment() {
 
@@ -35,6 +36,9 @@ class ShowPwdFragment : Fragment() {
         val factory = ShowPwdViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this,factory)[ShowPwdViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
+
+        //
+        showStatus("Loading ...")
         return binding.root
     }
 
@@ -49,15 +53,33 @@ class ShowPwdFragment : Fragment() {
             viewModel.delete(it.id)
         }
         adapter.setCopyBtnClickListener {
-            Toast.makeText(context, "Copied !", Toast.LENGTH_SHORT).show()
+//            //copy
+//            val clipBoardManager = (activity as MainActivity).getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+//            val items = arrayListOf(Item(it.username), Item(it.password))
+//            val clipData = ClipData(ClipDescription("", arrayOf<String>(ClipDescription.MIMETYPE_TEXT_PLAIN)), items)
+//            clipBoardManager.setPrimaryClip(clipData)
+            Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
         }
         binding.recyclerView.adapter = adapter
         viewModel.credentialList.observe(viewLifecycleOwner){
             it?.let {
+                if(it.isEmpty())
+                    showStatus("No Credentials")
+                else
+                    hideStatus()
                 adapter.submitList(it)
             }
         }
         setOnClickListeners()
+    }
+
+    private fun hideStatus() {
+        binding.statusTv.visibility = View.INVISIBLE
+    }
+
+    private fun showStatus(status: String) {
+        binding.statusTv.text = status
+        binding.statusTv.visibility = View.VISIBLE
     }
 
     private fun setOnClickListeners() {

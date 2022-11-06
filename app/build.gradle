@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.mk.pwdguard'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.mk.pwdguard"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -51,6 +51,9 @@ dependencies {
     //Nav
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+
+    //biometric
+    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
     //card view
     implementation 'androidx.cardview:cardview:1.0.0'

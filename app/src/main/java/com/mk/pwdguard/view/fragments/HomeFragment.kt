@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.mk.pwdguard.MainActivity
 import com.mk.pwdguard.R
 import com.mk.pwdguard.databinding.FragmentHomeBinding
 import com.mk.pwdguard.viewModel.HomeViewModel
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
         val factory = HomeViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
+        (activity as MainActivity).title = requireContext().getString(R.string.app_name)
         return binding.root
     }
 

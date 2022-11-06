@@ -22,4 +22,12 @@ interface CredentialDao{
     @Update
     fun update(credential: DatabaseEntities.Credential)
 
+    @Query("SELECT * FROM auth_table")
+    fun getPasswd() : LiveData<List<DatabaseEntities.Auth>>
+
+    @Insert
+    fun putPasswd(auth:DatabaseEntities.Auth)
+
+    @Query("DELETE from auth_table")
+    suspend fun deleteAuthDetails()
 }

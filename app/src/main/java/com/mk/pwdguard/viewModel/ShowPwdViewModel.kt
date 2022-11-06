@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ShowPwdViewModel(application: Application) :AndroidViewModel(application) {
-    val database = CredentialDb.getInstance(application)
-    val repository = Repository(database)
+    private val database = CredentialDb.getInstance(application)
+    private val repository = Repository(database)
     val credentialList = repository.credentials
     fun delete(id:Long){
         viewModelScope.launch {
