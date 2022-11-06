@@ -5,4 +5,7 @@
     <string name="save">Save</string>
     <string name="copy_button">copy button</string>
     <string name="loading">Loading..</string>
+    <string name="try_again">Try Again</string>
+    <string name="success">success</string>
+    <string name="unlocked">unlocked</string>
 </resources>
