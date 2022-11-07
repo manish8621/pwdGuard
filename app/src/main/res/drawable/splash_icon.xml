@@ -1,0 +1,4 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/white" android:height="100dp" android:width="100dp"/>
+    <item android:drawable="@drawable/yellowkey" android:height="50dp" android:width="50dp" android:gravity="center"/>
+</layer-list>

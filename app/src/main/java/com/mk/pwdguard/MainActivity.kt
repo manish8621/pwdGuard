@@ -10,6 +10,7 @@ import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.mk.pwdguard.databinding.ActivityMainBinding
 import java.util.concurrent.Executor
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         executer = ContextCompat.getMainExecutor(this)
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Authentication")
             .setSubtitle("Biometric login")
-            .setNegativeButtonText("has")
+            .setNegativeButtonText("cancel")
             .build()
         if ( bioMetrricManager.canAuthenticate(BIOMETRIC_STRONG or  DEVICE_CREDENTIAL)==BiometricManager.BIOMETRIC_SUCCESS)
             biometricPrompt.authenticate(promptInfo)
