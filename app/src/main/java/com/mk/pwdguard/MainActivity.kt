@@ -2,7 +2,6 @@ package com.mk.pwdguard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var executer:Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo:PromptInfo
-    private lateinit var bioMetrricManager: BiometricManager
+    private lateinit var bioMetricManager: BiometricManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         executer = ContextCompat.getMainExecutor(this)
-        bioMetrricManager = BiometricManager.from(this)
+        bioMetricManager = BiometricManager.from(this)
 
     }
     fun biometricAuth(
@@ -59,7 +58,10 @@ class MainActivity : AppCompatActivity() {
             .setSubtitle("Biometric login")
             .setNegativeButtonText("cancel")
             .build()
-        if ( bioMetrricManager.canAuthenticate(BIOMETRIC_STRONG or  DEVICE_CREDENTIAL)==BiometricManager.BIOMETRIC_SUCCESS)
+        if ( bioMetricManager.canAuthenticate(BIOMETRIC_STRONG or  DEVICE_CREDENTIAL)==BiometricManager.BIOMETRIC_SUCCESS)
             biometricPrompt.authenticate(promptInfo)
+    }
+    fun changeActionBarTitle(text:String){
+        title = text
     }
 }

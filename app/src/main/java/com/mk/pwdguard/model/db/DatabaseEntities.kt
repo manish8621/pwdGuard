@@ -25,9 +25,13 @@ class DatabaseEntities{
     @Entity(tableName = "auth_table")
     data class Auth(
         @PrimaryKey
-        val password: String
+        val password: String,
+        val authenticate:Boolean,
+        @ColumnInfo(name = "security_question") val securityQuestion:String,
+        val answer:String
     )
 }
+
 fun List<DatabaseEntities.Credential>.asDomainModels():List<DomainModels.Credential>{
     return map{
         it.asDomainModel()
@@ -45,7 +49,10 @@ fun DatabaseEntities.Credential.asDomainModel():DomainModels.Credential{
 }
 fun DatabaseEntities.Auth.asDomainModel():DomainModels.Auth{
     return DomainModels.Auth(
-        decrypt(password)
+        decrypt(password),
+        authenticate,
+        securityQuestion,
+        answer
     )
 }
 fun List<DatabaseEntities.Auth>.toDomainModels():List<DomainModels.Auth>{

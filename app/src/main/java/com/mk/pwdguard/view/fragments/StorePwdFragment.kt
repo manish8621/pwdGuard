@@ -26,7 +26,7 @@ class StorePwdFragment : Fragment() {
 
     lateinit var binding: FragmentStorePwdBinding
     lateinit var viewModel : StorePwdViewModel
-    val args : StorePwdFragmentArgs by navArgs()
+    private val args : StorePwdFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -37,27 +37,28 @@ class StorePwdFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentStorePwdBinding.inflate(inflater,container,false)
+
+        //view Model
         val factory = StorePwdViewModelFactory(requireActivity().application,args.id)
         viewModel = ViewModelProvider(this,factory)[StorePwdViewModel::class.java]
         binding.viewModel = viewModel
+
         //set title
-        //TODO: replace the (args.id>0) with a function
-        (activity as MainActivity).title = if(args.id>0) "Edit Credential" else "Add Credential"
+        (activity as MainActivity).changeActionBarTitle(if(idExists()) "Edit Credential" else "Add Credential")
 
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(args.id>0)
-            viewModel.getCredentialToUpdate(args.id)
-//        //set observers if update mode
-//        viewModel.credential.observe(viewLifecycleOwner){
-//            Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
-//        }
+
+        if(idExists()) viewModel.getCredentialToUpdate(args.id)
+
         setOnClickListeners()
     }
+
 
     private fun setOnClickListeners() {
         binding.saveBtn.setOnClickListener{
@@ -69,26 +70,16 @@ class StorePwdFragment : Fragment() {
                             findNavController().navigateUp()
                         }
                     }
-                    Toast.makeText(context, if(args.id>0) "Credential updated" else "Credential added", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, if(idExists()) "Credential updated" else "Credential added", Toast.LENGTH_SHORT).show()
                 }
-                else
-                    Toast.makeText(activity, "Passwords not matching", Toast.LENGTH_SHORT).show()
+                else Toast.makeText(activity, "Passwords not matching", Toast.LENGTH_SHORT).show()
             }
-            else
-                Toast.makeText(activity, "Blank fields", Toast.LENGTH_SHORT).show()
+            else Toast.makeText(activity, "Blank fields", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun getInputs(){
-        viewModel.credential.value?.let {
-            it.title = binding.titleEt.text.toString()
-            it.site = binding.siteEt.text.toString()
-            it.username = binding.usernameEt.text.toString()
-            it.password = binding.pwdEt.text.toString()
-        }
-    }
-    private fun idExists(id:Long){
-
+    private fun idExists():Boolean{
+        return args.id > 0
     }
 
 }

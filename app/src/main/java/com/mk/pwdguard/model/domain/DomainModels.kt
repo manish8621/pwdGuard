@@ -19,7 +19,10 @@ class DomainModels {
             var lastUpdated: Date,
         )
     data class Auth(
-        val password: String
+        val password: String,
+        val authenticate:Boolean,
+        val securityQuestion:String,
+        val answer:String
     )
 }
 
@@ -35,6 +38,9 @@ fun DomainModels.Credential.asDataBaseModel():DatabaseEntities.Credential{
 }
 fun DomainModels.Auth.asDatabaseModel():DatabaseEntities.Auth{
     return DatabaseEntities.Auth(
-        encrypt(password)
+        encrypt(password),
+        authenticate,
+        securityQuestion,
+        answer
     )
 }

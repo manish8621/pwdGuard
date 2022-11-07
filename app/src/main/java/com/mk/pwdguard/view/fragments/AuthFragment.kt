@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -29,6 +32,29 @@ class AuthFragment : Fragment() {
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        //drop down
+        val questions = arrayOf<String>("what is your nickname?"
+            ,"what is your pet name?"
+            ,"what is your native?"
+            ,"who is your favorite person?")
+
+        binding.questionDropdown.adapter = ArrayAdapter<String>(requireContext(),R.layout.spinner_item,questions)
+        binding.questionDropdown.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long) {
+                viewModel.question = questions[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(context, "nothing selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+        (activity as MainActivity).changeActionBarTitle("Authentication")
         return binding.root
     }
 
@@ -37,7 +63,10 @@ class AuthFragment : Fragment() {
         viewModel.authDetail.observe(viewLifecycleOwner){
             hideProgressBar()
             if(it.isNotEmpty()){
-                showAuthLayout()
+                if(it[0].authenticate)
+                    showAuthLayout()
+                else
+                    findNavController().navigate(R.id.action_authFragment_to_homeFragment)
             }
             else
             {
@@ -116,6 +145,10 @@ class AuthFragment : Fragment() {
                 }
             }
         //forgot password
+        binding.forgotPasswordTv.setOnClickListener{
+            findNavController().navigate(R.id.action_authFragment_to_resetPwdFragment)
+        }
+
         binding.fingerprintBtn.setOnClickListener {
             (activity as MainActivity).biometricAuth {
                 if(it) {

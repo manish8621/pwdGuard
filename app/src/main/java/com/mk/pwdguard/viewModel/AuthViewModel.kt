@@ -17,10 +17,12 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     var newPasswd=MutableLiveData("")
     var repeatPasswd=MutableLiveData("")
     var passwd=MutableLiveData("")
-//    var askPasswd = MutableLiveData(true)
+    var askPasswd = MutableLiveData(true)
+    var question = ""
+    var answer = MutableLiveData("")
     fun addNewPasswd(){
         newPasswd.value?.let{
-            viewModelScope.launch { repository.putPasswd(DomainModels.Auth(it)) }
+            viewModelScope.launch { repository.putPasswd(DomainModels.Auth(it,askPasswd.value?:true,question,answer.value?:"")) }
         }
     }
 

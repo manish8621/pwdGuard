@@ -32,17 +32,16 @@ class HomeFragment : Fragment() {
         val factory = HomeViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
-        (activity as MainActivity).title = requireContext().getString(R.string.app_name)
+
+        //title
+        (activity as MainActivity).changeActionBarTitle("Home")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListeners()
-//        viewModel.credentialList.observe(viewLifecycleOwner){
-//            Toast.makeText(activity, it?.toString()?:"null", Toast.LENGTH_SHORT).show()
-//            Log.i("TAG",it?.toString()?:"null")
-//        }
+
     }
 
     private fun setOnClickListeners() {

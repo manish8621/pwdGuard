@@ -6,6 +6,7 @@ import com.mk.pwdguard.model.db.*
 import com.mk.pwdguard.model.domain.DomainModels
 import com.mk.pwdguard.model.domain.asDataBaseModel
 import com.mk.pwdguard.model.domain.asDatabaseModel
+import com.mk.pwdguard.model.encrypt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,6 +55,11 @@ class Repository(private val credentialDb: CredentialDb) {
         withContext(Dispatchers.IO){
             credentialDb.credentialDao.putPasswd(auth.asDatabaseModel())
         }
+    }
 
+    suspend fun changeAppPassword(newPasswd:String){
+        withContext(Dispatchers.IO){
+            credentialDb.credentialDao.updatePasswd(encrypt(newPasswd))
+        }
     }
 }

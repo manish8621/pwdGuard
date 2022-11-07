@@ -29,17 +29,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/create_password_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/new_password_tv"
+                style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New password"
+                android:text="@string/new_password"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +50,7 @@
 
             <EditText
                 android:id="@+id/new_password_et"
+                style="@style/valueText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -61,6 +64,7 @@
 
             <TextView
                 android:id="@+id/repeat_password_tv"
+                style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -73,6 +77,7 @@
 
             <EditText
                 android:id="@+id/repeat_password_et"
+                style="@style/valueText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -84,18 +89,76 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
 
+            <TextView
+                android:id="@+id/pick_question_tv"
+                style="@style/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Pick a security question"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_et" />
+
+            <Spinner
+                android:id="@+id/question_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pick_question_tv" />
+
+            <TextView
+                android:id="@+id/answer_tv"
+                style="@style/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Answer"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question_dropdown" />
+
+            <EditText
+                android:id="@+id/answer_et"
+                style="@style/valueText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="answer"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:text="@={viewModel.answer}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/answer_tv" />
+
+            <CheckBox
+                android:id="@+id/ask_password_cb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:checked="@={viewModel.askPasswd}"
+                android:text="Ask Password at start"
+                app:layout_constraintBottom_toTopOf="@+id/submit_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/submit_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/light_blue"
                 android:text="submit"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/repeat_password_et" />
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -109,6 +172,7 @@
 
             <TextView
                 android:id="@+id/password_tv"
+                style="@style/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Enter password"
@@ -118,6 +182,7 @@
 
             <EditText
                 android:id="@+id/password_et"
+                style="@style/valueText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -134,12 +199,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textAlignment="center"
-                android:text="OR"
-                android:textColor="@color/black"
+                android:text="Forgot password"
+                android:textColor="#4FA0F7"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_et" />
+            <TextView
+                android:id="@+id/or_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="OR"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/forgot_password_tv" />
 
             <ImageButton
                 android:id="@+id/fingerprint_btn"
@@ -150,7 +225,7 @@
                 android:src="@drawable/ic_baseline_fingerprint_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/forgot_password_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/or_tv" />
 
             <Button
                 android:id="@+id/unlock_btn"
@@ -158,7 +233,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:animateLayoutChanges="true"
-                android:backgroundTint="@color/light_blue"
+                android:backgroundTint="#4FC3F7"
                 android:text="unlock"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"

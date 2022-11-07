@@ -28,6 +28,9 @@ interface CredentialDao{
     @Insert
     fun putPasswd(auth:DatabaseEntities.Auth)
 
+    @Query("UPDATE auth_table set password=:passwd")
+    fun updatePasswd(passwd:String)
+
     @Query("DELETE from auth_table")
     suspend fun deleteAuthDetails()
 }
