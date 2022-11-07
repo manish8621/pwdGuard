@@ -66,17 +66,27 @@
         <EditText
             android:id="@+id/new_password_et"
             style="@style/valueText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:hint="new password"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.newPasswd}"
-            app:layout_constraintTop_toBottomOf="@+id/new_password_tv"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_password_tv" />
+        <ImageView
+            android:id="@+id/eye_new_pwd_btn"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:src="@drawable/eye"
+
+            android:visibility="gone"
+            android:tag="hidden"
+            app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="@+id/new_password_et" />
 
         <TextView
             android:id="@+id/repeat_password_tv"
@@ -85,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:visibility="gone"
-            android:text="Repeat password"
+            android:text="@string/repeat_password"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,17 +105,28 @@
         <EditText
             android:id="@+id/repeat_password_et"
             style="@style/valueText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
-            android:hint="repeat password"
-            android:inputType="number"
+            android:hint="@string/repeat_password"
+            android:inputType="numberPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.repeatPasswd}"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv"
+             />
+        <ImageView
+            android:id="@+id/eye_repeat_pwd_btn"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:src="@drawable/eye"
+            android:visibility="gone"
+            android:tag="hidden"
+            app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
 
         <Button
             android:id="@+id/submit_btn"

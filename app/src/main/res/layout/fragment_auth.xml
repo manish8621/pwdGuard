@@ -51,16 +51,25 @@
             <EditText
                 android:id="@+id/new_password_et"
                 style="@style/valueText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="new password"
-                android:inputType="number"
+                android:hint="@string/new_password"
+                android:inputType="numberPassword"
                 android:minHeight="48dp"
                 android:text="@={viewModel.newPasswd}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/new_password_tv" />
+            <ImageView
+                android:id="@+id/eye_new_pwd_btn"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:src="@drawable/eye"
+                android:tag="hidden"
+                app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/new_password_et" />
 
             <TextView
                 android:id="@+id/repeat_password_tv"
@@ -68,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Repeat password"
+                android:text="@string/repeat_password"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,17 +87,25 @@
             <EditText
                 android:id="@+id/repeat_password_et"
                 style="@style/valueText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="repeat password"
-                android:inputType="number"
+                android:hint="@string/repeat_password"
+                android:inputType="numberPassword"
                 android:minHeight="48dp"
                 android:text="@={viewModel.repeatPasswd}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
-
+            <ImageView
+                android:id="@+id/eye_repeat_pwd_btn"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:src="@drawable/eye"
+                android:tag="hidden"
+                app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
             <TextView
                 android:id="@+id/pick_question_tv"
                 style="@style/titleText"
@@ -183,16 +200,26 @@
             <EditText
                 android:id="@+id/password_et"
                 style="@style/valueText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/password"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:minHeight="48dp"
                 android:text="@={viewModel.passwd}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/eye_pwd1_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/password_tv" />
+
+            <ImageView
+                android:id="@+id/eye_pwd1_btn"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:src="@drawable/eye"
+                android:tag="hidden"
+                app:layout_constraintBottom_toBottomOf="@+id/password_et"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/password_et" />
 
             <TextView
                 android:id="@+id/forgot_password_tv"

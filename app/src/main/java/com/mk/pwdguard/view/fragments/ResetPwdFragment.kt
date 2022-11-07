@@ -1,13 +1,13 @@
 package com.mk.pwdguard.view.fragments
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mk.pwdguard.MainActivity
@@ -49,6 +49,13 @@ class ResetPwdFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
+        //eye buttons
+        binding.eyeNewPwdBtn.setOnClickListener{
+            eyeButtonHandler(it as ImageView,binding.newPasswordEt)
+        }
+        binding.eyeRepeatPwdBtn.setOnClickListener{
+            eyeButtonHandler(it as ImageView,binding.repeatPasswordEt)
+        }
 
         //this click listener do two functions
         binding.submitBtn.setOnClickListener{
@@ -56,6 +63,20 @@ class ResetPwdFragment : Fragment() {
             if(viewModel.questionAnswerd) handleResettingPassword()
             else handleSecurityQuestion()
 
+        }
+    }
+
+    private fun eyeButtonHandler(imageView: ImageView, passwordEt: EditText) {
+        if((imageView).tag =="hidden"){
+            imageView.setImageResource(R.drawable.eye_cross)
+            passwordEt.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            passwordEt.moveCursorToVisibleOffset()
+            (imageView).tag ="shown"
+        }
+        else{
+            (imageView).tag ="hidden"
+            imageView.setImageResource(R.drawable.eye)
+            passwordEt.transformationMethod = PasswordTransformationMethod.getInstance()
         }
     }
 
@@ -106,6 +127,8 @@ class ResetPwdFragment : Fragment() {
     private fun showPasswordLayout() {
         binding.newPasswordTv.visibility = View.VISIBLE
         binding.newPasswordEt.visibility = View.VISIBLE
+        binding.eyeNewPwdBtn.visibility = View.VISIBLE
+        binding.eyeRepeatPwdBtn.visibility = View.VISIBLE
         binding.repeatPasswordTv.visibility = View.VISIBLE
         binding.repeatPasswordEt.visibility = View.VISIBLE
     }

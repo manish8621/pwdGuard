@@ -1,6 +1,8 @@
 package com.mk.pwdguard.view.fragments
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -90,6 +94,17 @@ class AuthFragment : Fragment() {
 
 
     private fun setOnClickListeners() {
+        //eye buttons
+        binding.eyePwd1Btn.setOnClickListener{
+            eyeButtonHandler(it as ImageView,binding.passwordEt)
+        }
+        binding.eyeNewPwdBtn.setOnClickListener{
+            eyeButtonHandler(it as ImageView,binding.newPasswordEt)
+        }
+        binding.eyeRepeatPwdBtn.setOnClickListener{
+            eyeButtonHandler(it as ImageView,binding.repeatPasswordEt)
+        }
+
 
         //to create password
         binding.submitBtn.setOnClickListener {
@@ -157,6 +172,20 @@ class AuthFragment : Fragment() {
                 }
                 else Toast.makeText(context, "authentication failed", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun eyeButtonHandler(imageView: ImageView, passwordEt: EditText) {
+        if((imageView).tag =="hidden"){
+            imageView.setImageResource(R.drawable.eye_cross)
+            passwordEt.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            passwordEt.moveCursorToVisibleOffset()
+            (imageView).tag ="shown"
+        }
+        else{
+            (imageView).tag ="hidden"
+            imageView.setImageResource(R.drawable.eye)
+            passwordEt.transformationMethod = PasswordTransformationMethod.getInstance()
         }
     }
 
