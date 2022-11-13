@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homeFragment_to_showPwdFragment"
             app:destination="@id/showPwdFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/showPwdFragment"
@@ -55,4 +58,8 @@
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.mk.pwdguard.view.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

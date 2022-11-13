@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
             showBtn.setOnClickListener{
                 findNavController().navigate(R.id.action_homeFragment_to_showPwdFragment)
             }
+            settingsIb.setOnClickListener{
+                findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            }
         }
     }
 

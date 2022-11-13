@@ -106,7 +106,7 @@ class ResetPwdFragment : Fragment() {
         if(newPwd.isNotEmpty() && newPwd.isNotBlank()
             && repeatPwd.isNotEmpty() && repeatPwd.isNotBlank() )
         {
-            if(newPwd.length>4 && repeatPwd.length>4){
+            if(newPwd.length<4 && repeatPwd.length<4){
                 Toast.makeText(context, "minimum password length is 4", Toast.LENGTH_SHORT).show()
                 return
             }

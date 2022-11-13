@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.mk.pwdguard.viewModel.SettingsViewModel" />
+    </data>
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/create_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+        <TextView
+            android:id="@+id/change_password_tv"
+            style="@style/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:text="Change password"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/old_password_tv"
+            style="@style/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:text="Old password"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change_password_tv" />
+
+        <EditText
+            android:id="@+id/old_password_et"
+            style="@style/valueText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:hint="Old password"
+            android:inputType="numberPassword"
+            android:minHeight="48dp"
+            android:text="@={viewModel.oldPasswd}"
+            app:layout_constraintEnd_toStartOf="@+id/eye_old_pwd_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/old_password_tv" />
+        <ImageView
+            android:id="@+id/eye_old_pwd_btn"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:src="@drawable/eye"
+            android:tag="hidden"
+            app:layout_constraintBottom_toBottomOf="@+id/old_password_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/old_password_et" />
+
+
+        <TextView
+            android:id="@+id/new_password_tv"
+            style="@style/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/new_password"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/old_password_et" />
+
+        <EditText
+            android:id="@+id/new_password_et"
+            style="@style/valueText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:hint="@string/new_password"
+            android:inputType="numberPassword"
+            android:minHeight="48dp"
+            android:text="@={viewModel.newPasswd}"
+            app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_password_tv" />
+        <ImageView
+            android:id="@+id/eye_new_pwd_btn"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:src="@drawable/eye"
+            android:tag="hidden"
+            app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/new_password_et" />
+
+        <TextView
+            android:id="@+id/repeat_password_tv"
+            style="@style/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:text="@string/repeat_password"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/new_password_et" />
+
+        <EditText
+            android:id="@+id/repeat_password_et"
+            style="@style/valueText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:hint="@string/repeat_password"
+            android:inputType="numberPassword"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+        <ImageView
+            android:id="@+id/eye_repeat_pwd_btn"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:src="@drawable/eye"
+            android:tag="hidden"
+            app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
+
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/light_blue"
+            android:visibility="gone"
+            android:text="submit"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
