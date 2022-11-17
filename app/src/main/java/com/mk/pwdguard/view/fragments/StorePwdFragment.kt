@@ -27,9 +27,7 @@ class StorePwdFragment : Fragment() {
     lateinit var binding: FragmentStorePwdBinding
     lateinit var viewModel : StorePwdViewModel
     private val args : StorePwdFragmentArgs by navArgs()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

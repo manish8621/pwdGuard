@@ -41,10 +41,10 @@
             style="@style/valueText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:hint="answer"
             android:inputType="text"
             android:minHeight="48dp"
-            android:layout_marginTop="8dp"
             android:text="@={viewModel.answer}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New password"
-            android:visibility="gone"
             android:textColor="#000000"
             android:textStyle="bold"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -72,18 +72,19 @@
             android:inputType="numberPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.newPasswd}"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_password_tv" />
+
         <ImageView
             android:id="@+id/eye_new_pwd_btn"
             android:layout_width="20dp"
             android:layout_height="0dp"
             android:src="@drawable/eye"
 
-            android:visibility="gone"
             android:tag="hidden"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/new_password_et" />
@@ -94,10 +95,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:visibility="gone"
             android:text="@string/repeat_password"
             android:textColor="#000000"
             android:textStyle="bold"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_password_et" />
@@ -112,18 +113,18 @@
             android:inputType="numberPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.repeatPasswd}"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv"
-             />
+            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+
         <ImageView
             android:id="@+id/eye_repeat_pwd_btn"
             android:layout_width="20dp"
             android:layout_height="0dp"
             android:src="@drawable/eye"
-            android:visibility="gone"
             android:tag="hidden"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
@@ -140,6 +141,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/question_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="answer_et,question_tv"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/reset_password_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="new_password_et,eye_new_pwd_btn,repeat_password_tv,eye_repeat_pwd_btn,new_password_tv,repeat_password_et"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

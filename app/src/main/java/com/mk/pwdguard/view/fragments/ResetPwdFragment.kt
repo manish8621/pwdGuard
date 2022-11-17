@@ -125,17 +125,11 @@ class ResetPwdFragment : Fragment() {
     }
 
     private fun showPasswordLayout() {
-        binding.newPasswordTv.visibility = View.VISIBLE
-        binding.newPasswordEt.visibility = View.VISIBLE
-        binding.eyeNewPwdBtn.visibility = View.VISIBLE
-        binding.eyeRepeatPwdBtn.visibility = View.VISIBLE
-        binding.repeatPasswordTv.visibility = View.VISIBLE
-        binding.repeatPasswordEt.visibility = View.VISIBLE
+        binding.resetPasswordGroup.visibility = View.VISIBLE
     }
 
     private fun hideQuestionLayout() {
-        binding.questionTv.visibility = View.GONE
-        binding.answerEt.visibility = View.GONE
+        binding.questionLayoutGroup.visibility = View.INVISIBLE
     }
 
 

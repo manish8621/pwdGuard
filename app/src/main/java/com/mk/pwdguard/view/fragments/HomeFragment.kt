@@ -2,11 +2,12 @@ package com.mk.pwdguard.view.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mk.pwdguard.MainActivity
@@ -40,8 +41,27 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setOnClickListeners()
 
+        setOnClickListeners()
+        setOverflowMenu()
+
+    }
+
+    private fun setOverflowMenu() {
+        (context as MenuHost).addMenuProvider(object : MenuProvider {
+
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.settings_menu,menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if(menuItem.itemId == R.id.settings_menu_item) {
+                    goToSettingsPage()
+                }
+                return true
+            }
+
+        },viewLifecycleOwner,Lifecycle.State.RESUMED)
     }
 
     private fun setOnClickListeners() {
@@ -53,10 +73,10 @@ class HomeFragment : Fragment() {
             showBtn.setOnClickListener{
                 findNavController().navigate(R.id.action_homeFragment_to_showPwdFragment)
             }
-            settingsIb.setOnClickListener{
-                findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
-            }
+
         }
     }
-
+    fun goToSettingsPage(){
+        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+    }
 }

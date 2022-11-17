@@ -81,11 +81,11 @@ class AuthFragment : Fragment() {
     }
 
     private fun showAuthLayout() {
-        binding.authPasswordLayout.visibility = View.VISIBLE
+        binding.authLayoutGroup.visibility = View.VISIBLE
     }
 
     private fun showCreatePasswordLayout() {
-        binding.createPasswordLayout.visibility = View.VISIBLE
+        binding.createAuthLayoutGroup.visibility = View.VISIBLE
     }
 
     private fun hideProgressBar() {
@@ -149,7 +149,6 @@ class AuthFragment : Fragment() {
                     animateSuccess(it){
                         findNavController().navigate(R.id.action_authFragment_to_homeFragment)
                     }
-                        Toast.makeText(context, "Unlock success", Toast.LENGTH_SHORT).show()
                 }
                 else {
                     //error label

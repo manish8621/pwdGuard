@@ -26,15 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/create_password_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+
 
             <TextView
                 android:id="@+id/new_password_tv"
@@ -61,6 +53,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/new_password_tv" />
+
             <ImageView
                 android:id="@+id/eye_new_pwd_btn"
                 android:layout_width="20dp"
@@ -97,6 +90,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+
             <ImageView
                 android:id="@+id/eye_repeat_pwd_btn"
                 android:layout_width="20dp"
@@ -106,6 +100,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
+
             <TextView
                 android:id="@+id/pick_question_tv"
                 style="@style/titleText"
@@ -176,16 +171,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/auth_password_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+
+
 
             <TextView
                 android:id="@+id/password_tv"
@@ -231,6 +219,7 @@
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_et" />
+
             <TextView
                 android:id="@+id/or_tv"
                 android:layout_width="match_parent"
@@ -252,22 +241,41 @@
                 android:src="@drawable/ic_baseline_fingerprint_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/or_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/or_tv"
+                android:contentDescription="fingerprint auth"
+                />
 
-            <Button
-                android:id="@+id/unlock_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:animateLayoutChanges="true"
-                android:backgroundTint="#4FC3F7"
-                android:text="unlock"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fingerprint_btn" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/unlock_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:animateLayoutChanges="true"
+            android:backgroundTint="#4FC3F7"
+            android:text="unlock"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fingerprint_btn" />
+
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/auth_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="password_tv,fingerprint_btn,eye_pwd1_btn,password_et,forgot_password_tv,or_tv,unlock_btn"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/create_auth_layout_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="repeat_password_tv,pick_question_tv,answer_et,submit_btn,repeat_password_et,eye_repeat_pwd_btn,question_dropdown,ask_password_cb,new_password_et,answer_tv,eye_new_pwd_btn,new_password_tv"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
