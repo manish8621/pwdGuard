@@ -10,25 +10,33 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:cardElevation="10dp"
+        android:tag="collapsed"
         app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/title_tv"
                 style="@style/titleText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{credential.title}"
                 android:textColor="@color/black"
                 android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/edit_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Instagram" />
@@ -37,41 +45,48 @@
                 android:id="@+id/site_iv"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/link"
-                app:layout_constraintBottom_toBottomOf="@+id/site_tv"
-                app:layout_constraintEnd_toStartOf="@+id/site_tv"
-                app:layout_constraintTop_toTopOf="@+id/site_tv" />
+                app:layout_constraintStart_toStartOf="@+id/title_tv"
+                app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+
             <TextView
                 android:id="@+id/site_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:textColor="#8A8A8A"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/title_tv"
-                app:layout_constraintEnd_toStartOf="@+id/delete_btn"
-                app:layout_constraintTop_toTopOf="@+id/title_tv"
+
+                android:text="@{credential.site}"
+                android:textColor="#1976D2"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@+id/site_iv"
+                app:layout_constraintEnd_toStartOf="@+id/copy_username_btn"
+                app:layout_constraintStart_toEndOf="@+id/site_iv"
+                app:layout_constraintTop_toTopOf="@+id/site_iv"
                 tools:text="www.instagram.com" />
 
             <ImageView
                 android:id="@+id/username_iv"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/user_account"
-                app:layout_constraintBottom_toBottomOf="@+id/copy_username_btn"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
-                app:layout_constraintTop_toTopOf="@+id/copy_username_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/site_iv" />
 
             <TextView
                 android:id="@+id/username_tv"
                 style="@style/valueText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{credential.username}"
                 android:textColor="#8A8A8A"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/username_iv"
+                app:layout_constraintEnd_toStartOf="@+id/copy_username_btn"
                 app:layout_constraintStart_toEndOf="@+id/username_iv"
                 app:layout_constraintTop_toTopOf="@+id/username_iv"
                 tools:text="mkmk" />
@@ -81,20 +96,24 @@
                 android:id="@+id/password_iv"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_marginTop="24dp"
                 android:src="@drawable/key"
-                app:layout_constraintBottom_toBottomOf="@+id/copy_password_btn"
                 app:layout_constraintStart_toStartOf="@+id/username_iv"
-                app:layout_constraintTop_toTopOf="@+id/copy_password_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/username_iv" />
 
             <TextView
                 android:id="@+id/password_tv"
                 style="@style/valueText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{credential.password}"
                 android:textColor="#8A8A8A"
                 android:textStyle="bold"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/password_iv"
+                app:layout_constraintEnd_toStartOf="@+id/copy_password_btn"
                 app:layout_constraintStart_toEndOf="@+id/password_iv"
                 app:layout_constraintTop_toTopOf="@+id/password_iv"
                 tools:text="*****" />
@@ -107,8 +126,9 @@
                 android:contentDescription="@string/copy_button"
                 android:minHeight="48dp"
                 android:src="@drawable/copy_24"
+                app:layout_constraintBottom_toBottomOf="@+id/username_iv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/delete_btn" />
+                app:layout_constraintTop_toTopOf="@+id/username_iv" />
 
             <ImageButton
                 android:id="@+id/copy_password_btn"
@@ -118,19 +138,43 @@
                 android:contentDescription="@string/copy_button"
                 android:minHeight="48dp"
                 android:src="@drawable/copy_24"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/password_iv"
                 app:layout_constraintEnd_toEndOf="@+id/copy_username_btn"
-                app:layout_constraintTop_toBottomOf="@+id/copy_username_btn" />
+                app:layout_constraintTop_toTopOf="@+id/password_iv" />
+
+            <ImageButton
+                android:id="@+id/edit_btn"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:background="#64B5F6"
+                android:contentDescription="edit button"
+                android:src="@drawable/edit"
+                app:layout_constraintBottom_toBottomOf="@+id/title_tv"
+                app:layout_constraintEnd_toStartOf="@id/delete_btn"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/delete_btn"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:background="@color/red"
+                android:contentDescription="delete button"
+                android:src="@drawable/close"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/detailed_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:contentDescription="delete button"
+                android:layout_marginEnd="388dp"
+                android:visibility="gone"
+                app:constraint_referenced_ids="password_iv,copy_username_btn,site_tv,copy_password_btn,site_iv,password_tv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_delete" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

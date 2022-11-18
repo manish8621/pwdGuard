@@ -5,13 +5,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
-import com.mk.pwdguard.model.repository.Repository
+import com.mk.pwdguard.model.repository.AuthenticationRepository
+import com.mk.pwdguard.model.repository.CredentialRepository
 import kotlinx.coroutines.launch
 
 class ResetPwdViewModel(application: Application) : AndroidViewModel(application) {
-    val database = CredentialDb.getInstance(application)
-    val repository= Repository(database)
-    val authDetail = repository.authDetail
+    private val database = CredentialDb.getInstance(application)
+
+    private val authRepository= AuthenticationRepository(database)
+
+    val authDetail = authRepository.getAuthDetail()
 
     var questionAnswerd = false
     var newPasswd= MutableLiveData("")
@@ -33,7 +36,7 @@ class ResetPwdViewModel(application: Application) : AndroidViewModel(application
     }
     fun updatePassword(){
         viewModelScope.launch {
-            repository.changeAppPassword(newPasswd.value?:"")
+            authRepository.changeAppPassword(newPasswd.value?:"")
         }
     }
 

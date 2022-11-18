@@ -36,7 +36,6 @@ class AuthFragment : Fragment() {
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
         //drop down
         val questions = arrayOf<String>("what is your nickname?"
             ,"what is your pet name?"
@@ -72,10 +71,7 @@ class AuthFragment : Fragment() {
                 else
                     findNavController().navigate(R.id.action_authFragment_to_homeFragment)
             }
-            else
-            {
-                showCreatePasswordLayout()
-            }
+            else showCreatePasswordLayout()
         }
         setOnClickListeners()
     }

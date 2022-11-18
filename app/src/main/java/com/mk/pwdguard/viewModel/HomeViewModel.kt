@@ -2,21 +2,25 @@ package com.mk.pwdguard.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
-import com.mk.pwdguard.model.db.DatabaseEntities
-import com.mk.pwdguard.model.repository.Repository
+import com.mk.pwdguard.model.repository.AuthenticationRepository
 import kotlinx.coroutines.launch
-import java.util.Date
 
 class HomeViewModel(application: Application) :AndroidViewModel(application) {
 
-    val database = CredentialDb.getInstance(application)
-    val repository = Repository(database)
-    val credentialList = repository.credentials
-    init {
+    private val database = CredentialDb.getInstance(application)
 
+    private val authRepository = AuthenticationRepository(database)
+
+    val authDetail  = authRepository.getAuthDetail()
+
+    fun isPasswordProtected():Boolean{
+        return authDetail.value?.let {
+            if(it.isNotEmpty()) it[0].authenticate else false
+        }?:false
     }
-
+    fun updateLockStatus(status:Boolean){
+        viewModelScope.launch{ authRepository.updateAppLock(status) }
+    }
 }

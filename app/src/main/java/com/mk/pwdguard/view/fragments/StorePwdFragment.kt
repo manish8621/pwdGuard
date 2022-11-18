@@ -37,7 +37,7 @@ class StorePwdFragment : Fragment() {
         binding = FragmentStorePwdBinding.inflate(inflater,container,false)
 
         //view Model
-        val factory = StorePwdViewModelFactory(requireActivity().application,args.id)
+        val factory = StorePwdViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this,factory)[StorePwdViewModel::class.java]
         binding.viewModel = viewModel
 

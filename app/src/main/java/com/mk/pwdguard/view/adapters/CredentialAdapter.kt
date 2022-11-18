@@ -1,56 +1,52 @@
 package com.mk.pwdguard.view.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mk.pwdguard.databinding.ListItemBinding
 import com.mk.pwdguard.model.domain.DomainModels.*
-import com.mk.pwdguard.model.smartShrink
 
 class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolder>(DiffUtilCallBack()){
 
-
-    //lambda
-    private var copyBtnClickListener: ((text: String) -> Unit)? = null
-    private var deleteBtnClickListener: ((id: Long) -> Unit)? = null
-    private var clickListener:(( credential:Credential)->Unit)? = null
+    private var clickListener:CredentialAdapter.ClickListener? = null
 
     //viewHolder
     class ItemViewHolder private constructor(val binding:ListItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(
-            credential: Credential,
-            clickListener: ((credential: Credential) -> Unit)?,
-            deleteBtnClickListener: ((id: Long) -> Unit)?,
-            copyBtnClickListener: ((text: String) -> Unit)?
-        )
+        fun bind(credential: Credential,clickListener: ClickListener?)
         {
+            binding.credential = credential
 
-
-            //shorten to avoid overflow
-            binding.titleTv.text = credential.title.smartShrink()
-            binding.usernameTv.text = credential.username.smartShrink()
-            binding.passwordTv.text = credential.password.smartShrink()
-            binding.siteTv.text = credential.site.smartShrink()
-
-            //if clicklistener is not null
-            clickListener?.let {
+            //if click-listener is not null
+            clickListener?.let { clickListeners ->
                 binding.root.setOnClickListener{
-                    clickListener.invoke(credential)
+                    binding.detailedGroup.visibility = if(binding.cardView.tag == "collapsed") {
+                        binding.cardView.tag = "expanded"
+                        View.VISIBLE
+                    }
+                    else
+                    {
+                        binding.cardView.tag = "collapsed"
+                        View.GONE
+                    }
                 }
-            }
-             deleteBtnClickListener?.let {
                 binding.deleteBtn.setOnClickListener{
-                    deleteBtnClickListener.invoke(credential.id)
+                    clickListeners.onDeleteBtnClicked(credential.id)
                 }
-            }
-            copyBtnClickListener?.let {
                 binding.copyUsernameBtn.setOnClickListener{
-                    copyBtnClickListener.invoke(credential.username)
+                    clickListeners.onCopyBtnClicked(credential.username)
                 }
                 binding.copyPasswordBtn.setOnClickListener{
-                    copyBtnClickListener.invoke(credential.password)
+                    clickListeners.onCopyBtnClicked(credential.password)
+                }
+                binding.siteTv.setOnClickListener{
+                    clickListeners.onSiteViewClicked(credential.site)
+                }
+                binding.editBtn.setOnClickListener{
+                    clickListeners.onEditClicked(credential.id)
                 }
             }
 
@@ -59,6 +55,8 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
             fun from(parent: ViewGroup):ItemViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ListItemBinding.inflate(layoutInflater,parent,false)
+                //for url underline
+                binding.siteTv.paintFlags = Paint.UNDERLINE_TEXT_FLAG
                 return ItemViewHolder(binding)
             }
         }
@@ -67,19 +65,21 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
     {
-        holder.bind(getItem(position), clickListener,deleteBtnClickListener,copyBtnClickListener)
+        holder.bind(getItem(position), clickListener)
     }
 
-    fun setOnclickListener(clickListener:(( credential:Credential)->Unit)){
+
+    interface ClickListener{
+        fun onDeleteBtnClicked( id:Long)
+        fun onCopyBtnClicked( text:String)
+        fun onSiteViewClicked( url:String)
+        fun onEditClicked(id:Long)
+    }
+    fun setOnClickListeners(clickListener: ClickListener){
         this.clickListener = clickListener
     }
-    fun setDeleteBtnClickListener(clickListener:(( id:Long)->Unit)){
-        this.deleteBtnClickListener = clickListener
-    }
-    fun setCopyBtnClickListener(clickListener:(( text:String)->Unit)){
-        this.copyBtnClickListener = clickListener
-    }
 }
+
 class DiffUtilCallBack: DiffUtil.ItemCallback<Credential>(){
     override fun areItemsTheSame(oldItem: Credential, newItem: Credential): Boolean = oldItem.id==newItem.id
     override fun areContentsTheSame(oldItem: Credential, newItem: Credential): Boolean = oldItem==newItem

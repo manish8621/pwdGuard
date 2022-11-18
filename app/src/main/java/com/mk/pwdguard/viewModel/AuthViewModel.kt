@@ -6,13 +6,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
 import com.mk.pwdguard.model.domain.DomainModels
-import com.mk.pwdguard.model.repository.Repository
+import com.mk.pwdguard.model.repository.AuthenticationRepository
+import com.mk.pwdguard.model.repository.CredentialRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
     val database = CredentialDb.getInstance(application)
-    val repository=Repository(database)
-    val authDetail = repository.authDetail
+    //
+    val credentialRepository=CredentialRepository(database)
+
+    val authRepository= AuthenticationRepository(database)
+
+    val authDetail = authRepository.getAuthDetail()
 
     var newPasswd=MutableLiveData("")
     var repeatPasswd=MutableLiveData("")
@@ -22,7 +27,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     var answer = MutableLiveData("")
     fun addNewPasswd(){
         newPasswd.value?.let{
-            viewModelScope.launch { repository.putPasswd(DomainModels.Auth(it,askPasswd.value?:true,question,answer.value?:"")) }
+            viewModelScope.launch { authRepository.saveAuthDetail(DomainModels.Auth(it,askPasswd.value?:true,question,answer.value?:"")) }
         }
     }
 

@@ -237,7 +237,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/transperent"
+                android:backgroundTint="@color/transparent"
                 android:src="@drawable/ic_baseline_fingerprint_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +263,7 @@
             android:id="@+id/auth_layout_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:constraint_referenced_ids="password_tv,fingerprint_btn,eye_pwd1_btn,password_et,forgot_password_tv,or_tv,unlock_btn"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
