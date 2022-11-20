@@ -43,9 +43,10 @@
 
             <ImageView
                 android:id="@+id/site_iv"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="8dp"
+
                 android:src="@drawable/link"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
@@ -56,21 +57,22 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
 
                 android:text="@{credential.site}"
                 android:textColor="#1976D2"
                 android:textStyle="italic"
+                android:ellipsize="end"
+                android:lines="1"
                 app:layout_constraintBottom_toBottomOf="@+id/site_iv"
-                app:layout_constraintEnd_toStartOf="@+id/copy_username_btn"
+                app:layout_constraintEnd_toEndOf="@+id/title_tv"
                 app:layout_constraintStart_toEndOf="@+id/site_iv"
                 app:layout_constraintTop_toTopOf="@+id/site_iv"
                 tools:text="www.instagram.com" />
 
             <ImageView
                 android:id="@+id/username_iv"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/user"
                 android:background="@drawable/rounded_corner"
@@ -79,14 +81,15 @@
 
             <TextView
                 android:id="@+id/username_tv"
-                style="@style/valueText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@{credential.username}"
                 android:textColor="#8A8A8A"
-                android:textStyle="bold"
+                android:ellipsize="end"
+                android:lines="1"
                 app:layout_constraintBottom_toBottomOf="@+id/username_iv"
                 app:layout_constraintEnd_toStartOf="@+id/copy_username_btn"
                 app:layout_constraintStart_toEndOf="@+id/username_iv"
@@ -96,26 +99,26 @@
 
             <ImageView
                 android:id="@+id/password_iv"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:padding="1dp"
                 android:layout_marginTop="24dp"
-                android:src="@drawable/key"
+                android:src="@drawable/key_lined"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/username_iv"
                 app:layout_constraintTop_toBottomOf="@+id/username_iv" />
 
             <TextView
                 android:id="@+id/password_tv"
-                style="@style/valueText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@{credential.password}"
                 android:textColor="#8A8A8A"
-                android:textStyle="bold"
-                android:visibility="visible"
+                android:ellipsize="end"
+                android:lines="1"
                 app:layout_constraintBottom_toBottomOf="@+id/password_iv"
                 app:layout_constraintEnd_toStartOf="@+id/copy_password_btn"
                 app:layout_constraintStart_toEndOf="@+id/password_iv"
