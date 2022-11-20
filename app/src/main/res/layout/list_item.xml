@@ -125,7 +125,7 @@
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/copy_button"
                 android:minHeight="48dp"
-                android:src="@drawable/copy_24"
+                android:src="@drawable/copy"
                 app:layout_constraintBottom_toBottomOf="@+id/username_iv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/username_iv" />
@@ -137,7 +137,7 @@
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/copy_button"
                 android:minHeight="48dp"
-                android:src="@drawable/copy_24"
+                android:src="@drawable/copy"
                 app:layout_constraintBottom_toBottomOf="@+id/password_iv"
                 app:layout_constraintEnd_toEndOf="@+id/copy_username_btn"
                 app:layout_constraintTop_toTopOf="@+id/password_iv" />
@@ -159,7 +159,7 @@
                 android:layout_height="0dp"
                 android:background="@color/red"
                 android:contentDescription="delete button"
-                android:src="@drawable/close"
+                android:src="@drawable/ic_baseline_delete"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

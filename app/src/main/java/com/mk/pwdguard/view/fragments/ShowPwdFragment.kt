@@ -3,6 +3,7 @@ package com.mk.pwdguard.view.fragments
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,10 +13,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mk.pwdguard.MainActivity
+import com.mk.pwdguard.R
 import com.mk.pwdguard.databinding.FragmentShowPwdBinding
 import com.mk.pwdguard.view.adapters.CredentialAdapter
 import com.mk.pwdguard.viewModel.ShowPwdViewModel
@@ -26,6 +30,7 @@ class ShowPwdFragment : Fragment() {
     lateinit var viewModel:ShowPwdViewModel
     lateinit var binding: FragmentShowPwdBinding
 
+    lateinit var alertDialogBuilder: MaterialAlertDialogBuilder
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +41,14 @@ class ShowPwdFragment : Fragment() {
         viewModel = ViewModelProvider(this,factory)[ShowPwdViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
 
+        alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
+            .setCancelable(true)
+            .setIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.delete_dark))
+            .setTitle("Delete")
+            .setMessage("Are you sure ?")
+            .setNegativeButton("") { dialog, _ -> dialog.cancel()}
+            .setNegativeButtonIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.close))
+            .setPositiveButtonIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_baseline_done))
 
         (activity as MainActivity).changeActionBarTitle("Pwd guard")
         showStatus("Loading ...")
@@ -67,6 +80,7 @@ class ShowPwdFragment : Fragment() {
         }
         binding.recyclerView.adapter = adapter
 
+        //alertdialog
 
 
         //observing for data
@@ -103,7 +117,8 @@ class ShowPwdFragment : Fragment() {
 
         adapter.setOnClickListeners(object :CredentialAdapter.ClickListener{
             override fun onDeleteBtnClicked(id: Long) {
-                viewModel.delete(id)
+                alertDialogBuilder.setPositiveButton(""){ dialog,_ -> viewModel.delete(id); dialog.cancel()}
+                alertDialogBuilder.show()
             }
             override fun onCopyBtnClicked(text: String) {
                 val clipBoardManager = (activity as MainActivity).getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

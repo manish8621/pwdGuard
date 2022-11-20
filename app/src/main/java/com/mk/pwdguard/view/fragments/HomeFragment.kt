@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
                 binding.lockStatusIv.setImageResource(R.drawable.lock)
             }
             else{
+                //TODO:Change that lock image with a fancy one
                 viewModel.updateLockStatus(false)
                 binding.lockStatusIv.setImageResource(R.drawable.lockopen)
             }
