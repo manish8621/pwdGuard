@@ -47,6 +47,7 @@
                 android:layout_height="25dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/link"
+                android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
                 app:layout_constraintTop_toBottomOf="@+id/title_tv" />
 
@@ -68,10 +69,11 @@
 
             <ImageView
                 android:id="@+id/username_iv"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/user_account"
+                android:src="@drawable/user"
+                android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
                 app:layout_constraintTop_toBottomOf="@+id/site_iv" />
 
@@ -96,8 +98,10 @@
                 android:id="@+id/password_iv"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:padding="1dp"
                 android:layout_marginTop="24dp"
                 android:src="@drawable/key"
+                android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/username_iv"
                 app:layout_constraintTop_toBottomOf="@+id/username_iv" />
 
@@ -184,7 +188,8 @@
                 android:visibility="gone"
                 app:constraint_referenced_ids="password_iv,copy_username_btn,site_tv,copy_password_btn,site_iv,password_tv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
