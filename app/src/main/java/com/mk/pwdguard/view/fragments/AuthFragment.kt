@@ -163,7 +163,6 @@ class AuthFragment : Fragment() {
             (activity as MainActivity).biometricAuth {
                 if(it) {
                     findNavController().navigate(R.id.action_authFragment_to_homeFragment)
-                    Toast.makeText(context, "unlocked", Toast.LENGTH_SHORT).show()
                 }
                 else Toast.makeText(context, "authentication failed", Toast.LENGTH_SHORT).show()
             }
@@ -205,7 +204,7 @@ class AuthFragment : Fragment() {
         it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.red))  }.animate().translationX(animationDistance).setDuration(animationDuration).withEndAction {
             it.animate().translationX(0.0F).setDuration(animationDuration).withEndAction {
                 it.animate().translationX(animationDistance).setDuration(animationDuration).withEndAction {
-                    it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.light_blue))}.animate()
+                    it.also { view ->view.setBackgroundColor(requireContext().getColor(R.color.primary))}.animate()
                         .translationX(0.0F).setDuration(animationDuration)
                         .withEndAction(endAction)
                         .start()
@@ -213,5 +212,4 @@ class AuthFragment : Fragment() {
             }.start()
         }.start()
     }
-
 }

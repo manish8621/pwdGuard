@@ -49,27 +49,6 @@ class ShowPwdFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupAlertDialog() {
-        alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
-            .setCancelable(true)
-            .setIcon(AppCompatResources.getDrawable(requireContext(), R.drawable.delete_dark))
-            .setTitle("Delete")
-            .setMessage("Are you sure ?")
-            .setNegativeButton("") { dialog, _ -> dialog.cancel() }
-            .setNegativeButtonIcon(
-                AppCompatResources.getDrawable(
-                    requireContext(),
-                    R.drawable.close
-                )
-            )
-            .setPositiveButtonIcon(
-                AppCompatResources.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_baseline_done
-                )
-            )
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //for searching
@@ -82,13 +61,34 @@ class ShowPwdFragment : Fragment() {
 
         //observing for data
         setupObservers()
-
     }
+
+    private fun setupAlertDialog() {
+        alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
+            .setCancelable(true)
+            .setIcon(AppCompatResources.getDrawable(requireContext(), R.drawable.delete_dark))
+            .setTitle("Delete")
+            .setMessage("Are you sure ?")
+            .setNegativeButton("") { dialog, _ -> dialog.cancel() }
+            .setNegativeButtonIcon(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.close_small
+                )
+            )
+            .setPositiveButtonIcon(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.done_small
+                )
+            )
+    }
+
 
     private fun setupObservers() {
         viewModel.credentialList.observe(viewLifecycleOwner) {
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
                 if (it.isEmpty()) {
                     if (viewModel.searchInProgress) {
                         //if searched is not found show not found

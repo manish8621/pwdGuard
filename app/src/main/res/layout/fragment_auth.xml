@@ -174,7 +174,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/light_blue"
+                android:backgroundTint="@color/primary"
                 android:text="submit"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -254,16 +254,16 @@
 
         <Button
             android:id="@+id/unlock_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:animateLayoutChanges="true"
-            android:backgroundTint="#4FC3F7"
+            android:backgroundTint="@color/primary"
             android:text="unlock"
             android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fingerprint_btn" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <androidx.constraintlayout.widget.Group
@@ -273,7 +273,8 @@
             android:visibility="invisible"
             app:constraint_referenced_ids="password_tv,fingerprint_btn,eye_pwd1_btn,password_et,forgot_password_tv,or_tv,unlock_btn,banner"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+            tools:layout_editor_absoluteY="16dp"
+            tools:visibility="invisible" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/create_auth_layout_group"
@@ -282,7 +283,8 @@
             android:visibility="invisible"
             app:constraint_referenced_ids="repeat_password_tv,pick_question_tv,answer_et,submit_btn,repeat_password_et,eye_repeat_pwd_btn,question_dropdown,ask_password_cb,new_password_et,answer_tv,eye_new_pwd_btn,new_password_tv"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+            tools:layout_editor_absoluteY="16dp"
+            tools:visibility="visible"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

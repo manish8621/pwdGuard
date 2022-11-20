@@ -168,7 +168,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/light_blue"
+            android:backgroundTint="@color/primary"
             android:visibility="gone"
             android:text="submit"
             android:textColor="@color/black"

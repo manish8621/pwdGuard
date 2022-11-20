@@ -8,14 +8,32 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mk.pwdguard.R
+import com.mk.pwdguard.databinding.ListHeaderBinding
 import com.mk.pwdguard.databinding.ListItemBinding
+import com.mk.pwdguard.model.ListItem
+import com.mk.pwdguard.model.domain.DomainModels
 import com.mk.pwdguard.model.domain.DomainModels.*
 
-class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolder>(DiffUtilCallBack()){
+const val HEADER = 0
+const val ITEM = 1
+
+
+class CredentialAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(DiffUtilCallBack()){
 
     private var clickListener:CredentialAdapter.ClickListener? = null
 
-    //viewHolder
+    //viewHolders
+    //header
+    class HeaderViewHolder private constructor(val binding:ListHeaderBinding): RecyclerView.ViewHolder(binding.root){
+        companion object{
+            fun from(parent: ViewGroup):HeaderViewHolder{
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListHeaderBinding.inflate(layoutInflater,parent,false)
+                return HeaderViewHolder(binding)
+            }
+        }
+    }
+    //item
     class ItemViewHolder private constructor(val binding:ListItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(credential: Credential,clickListener: ClickListener?)
         {
@@ -68,13 +86,34 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
             }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder = ItemViewHolder.from(parent)
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)
-    {
-        holder.bind(getItem(position), clickListener)
+
+    override fun getItemViewType(position: Int): Int {
+        return if(position==0) HEADER else ITEM
+    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType){
+            ITEM -> ItemViewHolder.from(parent)
+            HEADER -> HeaderViewHolder.from(parent)
+            else -> throw IllegalArgumentException("Illegal arg in onCreate viewHolder credential adapter")
+        }
     }
 
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(holder is ItemViewHolder)
+            holder.bind((getItem(position) as ListItem.CredentialItem).credential,clickListener)
+
+    }
+
+    fun addHeaderAndSubmitList(list: List<DomainModels.Credential>?){
+        val items = when(list){
+            null -> listOf(ListItem.HeaderItem)
+            else -> listOf(ListItem.HeaderItem)+(list.map { ListItem.CredentialItem(it) })
+        }
+
+        println()
+        submitList(items)
+    }
 
     interface ClickListener{
         fun onDeleteBtnClicked( id:Long)
@@ -85,9 +124,10 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
     fun setOnClickListeners(clickListener: ClickListener){
         this.clickListener = clickListener
     }
+
 }
 
-class DiffUtilCallBack: DiffUtil.ItemCallback<Credential>(){
-    override fun areItemsTheSame(oldItem: Credential, newItem: Credential): Boolean = oldItem.id==newItem.id
-    override fun areContentsTheSame(oldItem: Credential, newItem: Credential): Boolean = oldItem==newItem
+class DiffUtilCallBack: DiffUtil.ItemCallback<ListItem>(){
+    override fun areItemsTheSame(oldItem: ListItem, newItem: ListItem): Boolean = oldItem.id==newItem.id
+    override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean = oldItem==newItem
 }

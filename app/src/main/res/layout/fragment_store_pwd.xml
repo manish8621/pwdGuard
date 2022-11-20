@@ -8,12 +8,9 @@
             name="viewModel"
             type="com.mk.pwdguard.viewModel.StorePwdViewModel" />
     </data>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:context=".view.fragments.StorePwdFragment"
         android:padding="16dp"
         >
@@ -31,15 +28,17 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/title" />
 
-            <EditText
-                android:id="@+id/title_et"
-                style="@style/valueText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="@={viewModel.credential.title}"
-                app:layout_constraintTop_toBottomOf="@id/title_tv"
-                />
+        <EditText
+            android:id="@+id/title_et"
+            style="@style/valueText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={viewModel.credential.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_tv" />
 
         <TextView
             android:id="@+id/site_tv"
@@ -58,11 +57,12 @@
             android:id="@+id/site_et"
             style="@style/valueText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="text"
             android:text="@={viewModel.credential.site}"
-            app:layout_constraintTop_toBottomOf="@id/site_tv"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/site_tv" />
 
         <TextView
             android:id="@+id/username_tv"
@@ -81,19 +81,20 @@
             android:id="@+id/username_et"
             style="@style/valueText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="text"
             android:text="@={viewModel.credential.username}"
+            android:textColorHighlight="@color/primary"
             android:textColorHint="#757575"
-            android:textColorHighlight="@color/light_blue"
-            app:layout_constraintTop_toBottomOf="@id/username_tv"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/username_tv" />
 
         <TextView
             android:id="@+id/password_tv"
             style="@style/titleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:layout_marginTop="8dp"
             android:hint="@string/password"
             android:labelFor="@id/pwd_et"
@@ -106,18 +107,19 @@
             android:id="@+id/pwd_et"
             style="@style/valueText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="text"
             android:text="@={viewModel.credential.password}"
+            android:textColorHighlight="@color/primary"
             android:textColorHint="#757575"
-            android:textColorHighlight="@color/light_blue"
-            app:layout_constraintTop_toBottomOf="@id/password_tv"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_tv" />
 
         <TextView
             android:id="@+id/repeat_pwd_tv"
             style="@style/titleText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/repeat_password"
@@ -131,27 +133,29 @@
             android:id="@+id/repeat_pwd_et"
             style="@style/valueText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:inputType="text"
             android:text="@={viewModel.repeatPassword}"
+            android:textColorHighlight="@color/primary"
             android:textColorHint="#757575"
-            android:textColorHighlight="@color/light_blue"
-            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_tv"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_tv" />
+
         <Button
             android:id="@+id/save_btn"
             style="@style/titleText"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/light_blue"
+            android:backgroundTint="@color/primary"
             android:text="@string/save"
             android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_et"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
 </layout>
