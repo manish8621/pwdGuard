@@ -1,26 +1,21 @@
 package com.mk.pwdguard.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mk.pwdguard.MainActivity
-import com.mk.pwdguard.R
-import com.mk.pwdguard.databinding.FragmentShowPwdBinding
 import com.mk.pwdguard.databinding.FragmentStorePwdBinding
-import com.mk.pwdguard.model.domain.DomainModels
 import com.mk.pwdguard.viewModel.StorePwdViewModel
 import com.mk.pwdguard.viewModel.StorePwdViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.*
 
 class StorePwdFragment : Fragment() {
 

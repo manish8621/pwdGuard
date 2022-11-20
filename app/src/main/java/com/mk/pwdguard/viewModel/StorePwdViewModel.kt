@@ -17,7 +17,7 @@ class StorePwdViewModel(application: Application) :AndroidViewModel(application)
 
     private val credentialRepository = CredentialRepository(database)
 
-    val credential = MutableLiveData<Credential>(Credential(title = "", site = "www.", username = "", password = "", lastUpdated = Date()))
+    val credential = MutableLiveData(Credential(title = "", site = "www.", username = "", password = "", lastUpdated = Date()))
 
     //for 2 way data binding
     var repeatPassword = MutableLiveData("")

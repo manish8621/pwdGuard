@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
 import com.mk.pwdguard.model.repository.AuthenticationRepository
-import com.mk.pwdguard.model.repository.CredentialRepository
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(application: Application) :AndroidViewModel(application) {

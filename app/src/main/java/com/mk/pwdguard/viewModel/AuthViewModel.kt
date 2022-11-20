@@ -11,11 +11,9 @@ import com.mk.pwdguard.model.repository.CredentialRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-    val database = CredentialDb.getInstance(application)
-    //
-    val credentialRepository=CredentialRepository(database)
+    private val database = CredentialDb.getInstance(application)
 
-    val authRepository= AuthenticationRepository(database)
+    private val authRepository= AuthenticationRepository(database)
 
     val authDetail = authRepository.getAuthDetail()
 
@@ -35,7 +33,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         authDetail.value?.let {
             if(passwd.value!=null){
                 if (it.isNotEmpty())
-                    return (it.get(0).password == passwd.value)
+                    return (it[0].password == passwd.value)
             }
         }
         return false

@@ -26,14 +26,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/show_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/background" />
         <TextView
             android:id="@+id/app_lock_tv"
             style="@style/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="App lock"
+            android:text="@string/app_lock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
-            android:text="Add"
+            android:text="@string/add"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/show_btn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
-            android:text="Show"
+            android:text="@string/show"
             android:textColor="@color/white"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -83,7 +84,8 @@
             app:layout_constraintBottom_toTopOf="@+id/add_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/app_lock_status" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

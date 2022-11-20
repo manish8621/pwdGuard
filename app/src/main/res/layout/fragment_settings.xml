@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:visibility="gone"
-            android:text="Change password"
+            android:text="@string/change_password"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:visibility="gone"
-            android:text="Old password"
+            android:text="@string/old_password"
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,13 +66,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:visibility="gone"
-            android:hint="Old password"
+            android:hint="@string/old_password"
             android:inputType="numberPassword"
             android:minHeight="48dp"
             android:text="@={viewModel.oldPasswd}"
             app:layout_constraintEnd_toStartOf="@+id/eye_old_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/old_password_tv" />
+            app:layout_constraintTop_toBottomOf="@id/old_password_tv"
+            android:autofillHints="" />
         <ImageView
             android:id="@+id/eye_old_pwd_btn"
             android:layout_width="20dp"
@@ -83,7 +83,8 @@
             android:tag="hidden"
             app:layout_constraintBottom_toBottomOf="@+id/old_password_et"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/old_password_et" />
+            app:layout_constraintTop_toTopOf="@+id/old_password_et"
+            android:contentDescription="@string/eye_button" />
 
 
         <TextView
@@ -112,7 +113,8 @@
             android:text="@={viewModel.newPasswd}"
             app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/new_password_tv" />
+            app:layout_constraintTop_toBottomOf="@id/new_password_tv"
+            android:autofillHints="" />
         <ImageView
             android:id="@+id/eye_new_pwd_btn"
             android:layout_width="20dp"
@@ -122,7 +124,8 @@
             android:tag="hidden"
             app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/new_password_et" />
+            app:layout_constraintTop_toTopOf="@+id/new_password_et"
+            android:contentDescription="@string/eye_button" />
 
         <TextView
             android:id="@+id/repeat_password_tv"
@@ -150,7 +153,8 @@
             android:minHeight="48dp"
             app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+            app:layout_constraintTop_toBottomOf="@id/repeat_password_tv"
+            android:autofillHints="" />
         <ImageView
             android:id="@+id/eye_repeat_pwd_btn"
             android:layout_width="20dp"
@@ -160,7 +164,8 @@
             android:tag="hidden"
             app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
+            app:layout_constraintTop_toTopOf="@+id/repeat_password_et"
+            android:contentDescription="@string/eye_button" />
 
 
         <Button
@@ -170,7 +175,7 @@
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/primary"
             android:visibility="gone"
-            android:text="submit"
+            android:text="@string/submit"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,15 +1,11 @@
 package com.mk.pwdguard.model.db
 
-import android.icu.text.CaseMap.Title
-import androidx.annotation.ColorInt
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.mk.pwdguard.model.decrypt
 import com.mk.pwdguard.model.domain.DomainModels
-import java.util.Date
+import java.util.*
 
 class DatabaseEntities{
     @Entity(tableName = "credential_table")

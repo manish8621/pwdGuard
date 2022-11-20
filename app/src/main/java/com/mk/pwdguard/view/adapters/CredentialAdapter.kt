@@ -20,7 +20,7 @@ const val ITEM = 1
 
 class CredentialAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(DiffUtilCallBack()){
 
-    private var clickListener:CredentialAdapter.ClickListener? = null
+    private var clickListener:ClickListener? = null
 
     //viewHolders
     //header
@@ -105,7 +105,7 @@ class CredentialAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(DiffUtil
 
     }
 
-    fun addHeaderAndSubmitList(list: List<DomainModels.Credential>?){
+    fun addHeaderAndSubmitList(list: List<Credential>?){
         val items = when(list){
             null -> listOf(ListItem.HeaderItem)
             else -> listOf(ListItem.HeaderItem)+(list.map { ListItem.CredentialItem(it) })

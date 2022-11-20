@@ -22,7 +22,8 @@
             android:src="@drawable/secure_data"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/banner" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -61,7 +62,8 @@
                 android:text="@={viewModel.newPasswd}"
                 app:layout_constraintEnd_toStartOf="@+id/eye_new_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/new_password_tv" />
+                app:layout_constraintTop_toBottomOf="@id/new_password_tv"
+                android:autofillHints="" />
 
             <ImageView
                 android:id="@+id/eye_new_pwd_btn"
@@ -71,7 +73,8 @@
                 android:tag="hidden"
                 app:layout_constraintBottom_toBottomOf="@+id/new_password_et"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/new_password_et" />
+                app:layout_constraintTop_toTopOf="@+id/new_password_et"
+                android:contentDescription="@string/eye_button" />
 
             <TextView
                 android:id="@+id/repeat_password_tv"
@@ -98,7 +101,8 @@
                 android:text="@={viewModel.repeatPasswd}"
                 app:layout_constraintEnd_toStartOf="@+id/eye_repeat_pwd_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/repeat_password_tv" />
+                app:layout_constraintTop_toBottomOf="@id/repeat_password_tv"
+                android:autofillHints="" />
 
             <ImageView
                 android:id="@+id/eye_repeat_pwd_btn"
@@ -108,7 +112,8 @@
                 android:tag="hidden"
                 app:layout_constraintBottom_toBottomOf="@+id/repeat_password_et"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/repeat_password_et" />
+                app:layout_constraintTop_toTopOf="@+id/repeat_password_et"
+                android:contentDescription="@string/eye_button" />
 
             <TextView
                 android:id="@+id/pick_question_tv"
@@ -116,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Pick a security question"
+                android:text="@string/pick_a_security_question"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Answer"
+                android:text="@string/answer"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -150,13 +155,14 @@
                 style="@style/valueText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="answer"
+                android:hint="@string/answer"
                 android:inputType="text"
                 android:minHeight="48dp"
                 android:text="@={viewModel.answer}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/answer_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/answer_tv"
+                android:autofillHints="" />
 
             <CheckBox
                 android:id="@+id/ask_password_cb"
@@ -164,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:checked="@={viewModel.askPasswd}"
-                android:text="Ask Password at start"
+                android:text="@string/ask_password_at_start"
                 app:layout_constraintBottom_toTopOf="@+id/submit_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -175,7 +181,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/primary"
-                android:text="submit"
+                android:text="@string/submit"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +193,7 @@
             style="@style/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter password"
+            android:text="@string/enter_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
@@ -204,7 +210,8 @@
                 android:text="@={viewModel.passwd}"
                 app:layout_constraintEnd_toStartOf="@+id/eye_pwd1_btn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/password_tv" />
+                app:layout_constraintTop_toBottomOf="@id/password_tv"
+                android:autofillHints="" />
 
             <ImageView
                 android:id="@+id/eye_pwd1_btn"
@@ -214,14 +221,15 @@
                 android:tag="hidden"
                 app:layout_constraintBottom_toBottomOf="@+id/password_et"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/password_et" />
+                app:layout_constraintTop_toTopOf="@+id/password_et"
+                android:contentDescription="@string/eye_button" />
 
             <TextView
                 android:id="@+id/forgot_password_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Forgot password"
+                android:text="@string/forgot_password"
                 android:textColor="#4FA0F7"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="OR"
+                android:text="@string/or"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="italic"
@@ -249,7 +257,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/or_tv"
-                android:contentDescription="fingerprint auth"
+                android:contentDescription="@string/fingerprint_auth"
                 />
 
         <Button
@@ -258,7 +266,7 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:backgroundTint="@color/primary"
-            android:text="unlock"
+            android:text="@string/unlock"
             android:textColor="@color/black"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -24,7 +24,10 @@
         android:label="ShowPwdFragment" >
         <action
             android:id="@+id/action_showPwdFragment_to_storePwdFragment"
-            app:destination="@id/storePwdFragment" />
+            app:destination="@id/storePwdFragment"
+            app:enterAnim="@anim/to_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popExitAnim="@anim/to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/storePwdFragment"

@@ -50,7 +50,8 @@
                 android:src="@drawable/link"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
-                app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/title_tv"
+                android:contentDescription="@string/site" />
 
             <TextView
                 android:id="@+id/site_tv"
@@ -77,7 +78,8 @@
                 android:src="@drawable/user"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/title_tv"
-                app:layout_constraintTop_toBottomOf="@+id/site_iv" />
+                app:layout_constraintTop_toBottomOf="@+id/site_iv"
+                android:contentDescription="@string/username" />
 
             <TextView
                 android:id="@+id/username_tv"
@@ -106,7 +108,8 @@
                 android:src="@drawable/key_lined"
                 android:background="@drawable/rounded_corner"
                 app:layout_constraintStart_toStartOf="@+id/username_iv"
-                app:layout_constraintTop_toBottomOf="@+id/username_iv" />
+                app:layout_constraintTop_toBottomOf="@+id/username_iv"
+                android:contentDescription="@string/password" />
 
             <TextView
                 android:id="@+id/password_tv"
@@ -154,7 +157,7 @@
                 android:layout_width="50dp"
                 android:layout_height="0dp"
                 android:background="@color/transparent"
-                android:contentDescription="edit button"
+                android:contentDescription="@string/edit_button"
                 android:src="@drawable/edit"
                 app:layout_constraintBottom_toBottomOf="@+id/title_tv"
                 app:layout_constraintEnd_toStartOf="@id/delete_btn"
@@ -165,7 +168,7 @@
                 android:layout_width="50dp"
                 android:layout_height="0dp"
                 android:background="@color/transparent"
-                android:contentDescription="expand collapse button"
+                android:contentDescription="@string/expand_collapse_button"
                 android:animateLayoutChanges="true"
                 android:src="@drawable/ic_baseline_expand_more"
                 app:layout_constraintBottom_toBottomOf="@+id/title_tv"
@@ -177,7 +180,7 @@
                 android:layout_width="50dp"
                 android:layout_height="0dp"
                 android:background="@color/transparent"
-                android:contentDescription="delete button"
+                android:contentDescription="@string/delete_button"
                 android:src="@drawable/ic_baseline_delete_outline_24"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_btn"
                 app:layout_constraintEnd_toEndOf="parent"

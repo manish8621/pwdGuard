@@ -1,8 +1,5 @@
 package com.mk.pwdguard.model.domain
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.mk.pwdguard.model.db.DatabaseEntities
 import com.mk.pwdguard.model.encrypt
 import java.util.*

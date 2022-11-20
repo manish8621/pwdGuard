@@ -1,14 +1,11 @@
 package com.mk.pwdguard.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Switch
-import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController

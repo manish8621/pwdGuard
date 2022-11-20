@@ -20,11 +20,13 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:background="#FFFFFF"
-            android:hint="search"
+            android:hint="@string/search"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/search_ib"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <ImageButton
             android:id="@+id/search_ib"
@@ -34,7 +36,8 @@
             android:src="@drawable/search_24"
             app:layout_constraintBottom_toBottomOf="@id/search_et"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/search_et" />
+            app:layout_constraintTop_toTopOf="@id/search_et"
+            android:contentDescription="@string/search" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

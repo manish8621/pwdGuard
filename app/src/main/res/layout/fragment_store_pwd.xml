@@ -38,7 +38,8 @@
             android:text="@={viewModel.credential.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_tv" />
+            app:layout_constraintTop_toBottomOf="@id/title_tv"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/site_tv"
@@ -62,7 +63,8 @@
             android:text="@={viewModel.credential.site}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/site_tv" />
+            app:layout_constraintTop_toBottomOf="@id/site_tv"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/username_tv"
@@ -88,7 +90,8 @@
             android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/username_tv" />
+            app:layout_constraintTop_toBottomOf="@id/username_tv"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/password_tv"
@@ -114,7 +117,8 @@
             android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_tv" />
+            app:layout_constraintTop_toBottomOf="@id/password_tv"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/repeat_pwd_tv"
@@ -140,7 +144,8 @@
             android:textColorHint="#757575"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_tv" />
+            app:layout_constraintTop_toBottomOf="@id/repeat_pwd_tv"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/save_btn"

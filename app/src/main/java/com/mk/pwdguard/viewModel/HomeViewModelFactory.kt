@@ -1,7 +1,6 @@
 package com.mk.pwdguard.viewModel
 
 import android.app.Application
-import android.view.ViewParent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 

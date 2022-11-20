@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mk.pwdguard.model.db.CredentialDb
 import com.mk.pwdguard.model.repository.AuthenticationRepository
-import com.mk.pwdguard.model.repository.CredentialRepository
 import kotlinx.coroutines.launch
 
 class ResetPwdViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,9 +21,6 @@ class ResetPwdViewModel(application: Application) : AndroidViewModel(application
 
     var answer = MutableLiveData("")
 
-    init {
-
-    }
     fun answerMatches():Boolean{
         authDetail.value?.let {
             if(it.isNotEmpty() && (it[0].answer == (answer.value?:"")))

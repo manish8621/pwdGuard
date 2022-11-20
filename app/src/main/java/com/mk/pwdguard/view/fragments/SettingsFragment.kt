@@ -3,21 +3,19 @@ package com.mk.pwdguard.view.fragments
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mk.pwdguard.MainActivity
 import com.mk.pwdguard.R
 import com.mk.pwdguard.databinding.FragmentSettingsBinding
-import com.mk.pwdguard.viewModel.ResetPwdViewModel
 import com.mk.pwdguard.viewModel.SettingsViewModel
 import com.mk.pwdguard.viewModel.SettingsViewModelFactory
 
@@ -41,6 +39,8 @@ class SettingsFragment : Fragment() {
         }
 
         (activity as MainActivity).changeActionBarTitle("Settings")
+
+
         setOnClickListeners()
         return binding.root
     }

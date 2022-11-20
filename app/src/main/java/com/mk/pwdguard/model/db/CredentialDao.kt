@@ -1,6 +1,5 @@
 package com.mk.pwdguard.model.db
 
-import android.widget.SearchView
 import androidx.lifecycle.LiveData
 import androidx.room.*
 

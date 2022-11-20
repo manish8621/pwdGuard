@@ -3,17 +3,11 @@ package com.mk.pwdguard.view.fragments
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mk.pwdguard.MainActivity
@@ -37,12 +31,12 @@ class AuthFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         //drop down
-        val questions = arrayOf<String>("what is your nickname?"
+        val questions = arrayOf("what is your nickname?"
             ,"what is your pet name?"
             ,"what is your native?"
             ,"who is your favorite person?")
 
-        binding.questionDropdown.adapter = ArrayAdapter<String>(requireContext(),R.layout.spinner_item,questions)
+        binding.questionDropdown.adapter = ArrayAdapter(requireContext(),R.layout.spinner_item,questions)
         binding.questionDropdown.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,

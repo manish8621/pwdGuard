@@ -12,4 +12,26 @@
     <string name="username">Username</string>
     <string name="repeat_password">Repeat password</string>
     <string name="new_password">New password</string>
+    <string name="delete_button">delete button</string>
+    <string name="expand_collapse_button">expand collapse button</string>
+    <string name="edit_button">edit button</string>
+    <string name="banner">banner</string>
+    <string name="search">search</string>
+    <string name="change_password">Change password</string>
+    <string name="old_password">Old password</string>
+    <string name="eye_button">eye_button</string>
+    <string name="submit">submit</string>
+    <string name="answer">answer</string>
+    <string name="background">background</string>
+    <string name="app_lock">App lock</string>
+    <string name="add">Add</string>
+    <string name="show">Show</string>
+    <string name="app_lock_status">app lock status</string>
+    <string name="pick_a_security_question">Pick a security question</string>
+    <string name="ask_password_at_start">Ask Password at start</string>
+    <string name="enter_password">Enter password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="or">OR</string>
+    <string name="fingerprint_auth">fingerprint auth</string>
+    <string name="unlock">unlock</string>
 </resources>
