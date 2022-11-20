@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mk.pwdguard.R
 import com.mk.pwdguard.databinding.ListItemBinding
 import com.mk.pwdguard.model.domain.DomainModels.*
 
@@ -22,17 +23,23 @@ class CredentialAdapter: ListAdapter<Credential, CredentialAdapter.ItemViewHolde
 
             //if click-listener is not null
             clickListener?.let { clickListeners ->
-                binding.root.setOnClickListener{
-                    binding.detailedGroup.visibility = if(binding.cardView.tag == "collapsed") {
+                val expandCollapseAction = { _:View->
+                     if(binding.cardView.tag == "collapsed") {
                         binding.cardView.tag = "expanded"
-                        View.VISIBLE
+                         binding.detailedGroup.visibility = View.VISIBLE
+                         binding.expColBtn.setImageResource(R.drawable.ic_baseline_expand_less)
                     }
                     else
                     {
                         binding.cardView.tag = "collapsed"
-                        View.GONE
+                        binding.detailedGroup.visibility = View.GONE
+                        binding.expColBtn.setImageResource(R.drawable.ic_baseline_expand_more)
                     }
                 }
+
+                binding.root.setOnClickListener(expandCollapseAction)
+                binding.expColBtn.setOnClickListener(expandCollapseAction)
+
                 binding.deleteBtn.setOnClickListener{
                     clickListeners.onDeleteBtnClicked(credential.id)
                 }

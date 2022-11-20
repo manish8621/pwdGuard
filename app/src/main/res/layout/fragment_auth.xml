@@ -15,6 +15,15 @@
         android:padding="16dp"
         tools:context=".view.fragments.AuthFragment">
 
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:src="@drawable/secure_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
@@ -173,17 +182,15 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
 
-
-
-            <TextView
-                android:id="@+id/password_tv"
-                style="@style/titleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Enter password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/password_tv"
+            style="@style/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/banner" />
 
             <EditText
                 android:id="@+id/password_et"
@@ -264,7 +271,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:constraint_referenced_ids="password_tv,fingerprint_btn,eye_pwd1_btn,password_et,forgot_password_tv,or_tv,unlock_btn"
+            app:constraint_referenced_ids="password_tv,fingerprint_btn,eye_pwd1_btn,password_et,forgot_password_tv,or_tv,unlock_btn,banner"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
 

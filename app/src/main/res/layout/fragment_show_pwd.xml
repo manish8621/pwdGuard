@@ -18,6 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:hint="search"
+            android:background="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/search_ib"

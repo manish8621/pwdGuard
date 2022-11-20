@@ -36,7 +36,7 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:visibility="visible"
-                app:layout_constraintEnd_toStartOf="@+id/edit_btn"
+                app:layout_constraintEnd_toStartOf="@+id/exp_col_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Instagram" />
@@ -146,7 +146,7 @@
                 android:id="@+id/edit_btn"
                 android:layout_width="50dp"
                 android:layout_height="0dp"
-                android:background="#64B5F6"
+                android:background="@color/transparent"
                 android:contentDescription="edit button"
                 android:src="@drawable/edit"
                 app:layout_constraintBottom_toBottomOf="@+id/title_tv"
@@ -154,12 +154,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
+                android:id="@+id/exp_col_btn"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:background="@color/transparent"
+                android:contentDescription="expand collapse button"
+                android:animateLayoutChanges="true"
+                android:src="@drawable/ic_baseline_expand_more"
+                app:layout_constraintBottom_toBottomOf="@+id/title_tv"
+                app:layout_constraintEnd_toStartOf="@+id/edit_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
                 android:id="@+id/delete_btn"
                 android:layout_width="50dp"
                 android:layout_height="0dp"
-                android:background="@color/red"
+                android:background="@color/transparent"
                 android:contentDescription="delete button"
-                android:src="@drawable/ic_baseline_delete"
+                android:src="@drawable/ic_baseline_delete_outline_24"
                 app:layout_constraintBottom_toBottomOf="@+id/edit_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

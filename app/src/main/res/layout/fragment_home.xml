@@ -15,8 +15,10 @@
 
         <TextView
             android:id="@+id/app_lock_tv"
+            style="@style/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="App lock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -28,7 +30,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:checked="true"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +63,8 @@
             android:id="@+id/lock_status_iv"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/lock"
+            android:src="@drawable/shild_protected"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/add_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

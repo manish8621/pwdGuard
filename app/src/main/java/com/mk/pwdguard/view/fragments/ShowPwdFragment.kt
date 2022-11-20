@@ -29,8 +29,9 @@ class ShowPwdFragment : Fragment() {
 
     lateinit var viewModel:ShowPwdViewModel
     lateinit var binding: FragmentShowPwdBinding
-
+    lateinit var adapter: CredentialAdapter
     lateinit var alertDialogBuilder: MaterialAlertDialogBuilder
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,67 +42,86 @@ class ShowPwdFragment : Fragment() {
         viewModel = ViewModelProvider(this,factory)[ShowPwdViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
 
-        alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
-            .setCancelable(true)
-            .setIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.delete_dark))
-            .setTitle("Delete")
-            .setMessage("Are you sure ?")
-            .setNegativeButton("") { dialog, _ -> dialog.cancel()}
-            .setNegativeButtonIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.close))
-            .setPositiveButtonIcon(AppCompatResources.getDrawable(requireContext(),R.drawable.ic_baseline_done))
+        setupAlertDialog()
 
         (activity as MainActivity).changeActionBarTitle("Pwd guard")
         showStatus("Loading ...")
         return binding.root
     }
 
+    private fun setupAlertDialog() {
+        alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
+            .setCancelable(true)
+            .setIcon(AppCompatResources.getDrawable(requireContext(), R.drawable.delete_dark))
+            .setTitle("Delete")
+            .setMessage("Are you sure ?")
+            .setNegativeButton("") { dialog, _ -> dialog.cancel() }
+            .setNegativeButtonIcon(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.close
+                )
+            )
+            .setPositiveButtonIcon(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_baseline_done
+                )
+            )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val adapter = CredentialAdapter()
-
-        setOnClickListeners(adapter)
-
-        //view listeners
         //for searching
-        binding.searchEt.addTextChangedListener(object :TextWatcher{
+        setupSearchView()
+
+        //recycler view
+        adapter = CredentialAdapter()
+        setOnClickListeners()
+        binding.recyclerView.adapter = adapter
+
+        //observing for data
+        setupObservers()
+
+    }
+
+    private fun setupObservers() {
+        viewModel.credentialList.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter.submitList(it)
+                if (it.isEmpty()) {
+                    if (viewModel.searchInProgress) {
+                        //if searched is not found show not found
+                        // if search query is empty and result is empty then show no data in db
+                        showStatus(
+                            if (viewModel.lastSearchQuery()
+                                    .isNotEmpty()
+                            ) "No results found" else "No Credentials"
+                        )
+                        viewModel.onSearchCompleted()
+                    } else {
+                        showStatus("No Credentials")
+                    }
+                } else hideStatus()
+            }
+        }
+    }
+
+    private fun setupSearchView() {
+        binding.searchEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(query: CharSequence?, start: Int, before: Int, count: Int) {
-                query?.toString()?.let{ viewModel.search(it) }
+                query?.toString()?.let { viewModel.search(it) }
             }
 
             override fun afterTextChanged(s: Editable?) {
             }
         })
-        binding.searchIb.setOnClickListener{
-             viewModel.search(binding.searchEt.text.toString())
+        binding.searchIb.setOnClickListener {
+            viewModel.search(binding.searchEt.text.toString())
         }
-        binding.recyclerView.adapter = adapter
-
-        //alertdialog
-
-
-        //observing for data
-        viewModel.credentialList.observe(viewLifecycleOwner){
-            it?.let {
-                adapter.submitList(it)
-                if(it.isEmpty()) {
-                    if (viewModel.searchInProgress){
-                        //if searched is not found show not found
-                        // if search query is empty and result is empty then show no data in db
-                        showStatus(if(viewModel.lastSearchQuery().isNotEmpty()) "No results found" else "No Credentials")
-                        viewModel.onSearchCompleted()
-                    }
-                    else {
-                        showStatus("No Credentials")
-                    }
-                }
-                else hideStatus()
-            }
-        }
-
     }
 
     private fun hideStatus() {
@@ -113,7 +133,7 @@ class ShowPwdFragment : Fragment() {
         binding.statusTv.visibility = View.VISIBLE
     }
 
-    private fun setOnClickListeners(adapter: CredentialAdapter) {
+    private fun setOnClickListeners() {
 
         adapter.setOnClickListeners(object :CredentialAdapter.ClickListener{
             override fun onDeleteBtnClicked(id: Long) {

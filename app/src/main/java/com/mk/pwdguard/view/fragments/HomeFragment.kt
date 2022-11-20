@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -44,27 +45,13 @@ class HomeFragment : Fragment() {
         setOnClickListeners()
         setOverflowMenu()
         setObserver()
-        setViewsListeners()
     }
 
-    private fun setViewsListeners() {
 
-        binding.appLockSw.setOnClickListener {
-            //TODO:Binding adapter
-            if((it as SwitchMaterial).isChecked){
-                viewModel.updateLockStatus(true)
-                binding.lockStatusIv.setImageResource(R.drawable.lock)
-            }
-            else{
-                //TODO:Change that lock image with a fancy one
-                viewModel.updateLockStatus(false)
-                binding.lockStatusIv.setImageResource(R.drawable.lockopen)
-            }
-        }
-    }
 
     private fun setObserver() {
         viewModel.authDetail.observe(viewLifecycleOwner){
+            if(binding.lockStatusIv.isVisible.not()) binding.lockStatusIv.visibility = View.VISIBLE
             if(viewModel.isPasswordProtected())
                 showLockedUi()
             else
@@ -74,12 +61,12 @@ class HomeFragment : Fragment() {
 
     private fun showUnlockedUi() {
         binding.appLockSw.isChecked = false
-        binding.lockStatusIv.setImageResource(R.drawable.lockopen)
+        binding.lockStatusIv.setImageResource(R.drawable.shield_broken)
     }
 
     private fun showLockedUi() {
         binding.appLockSw.isChecked = true
-        binding.lockStatusIv.setImageResource(R.drawable.lock)
+        binding.lockStatusIv.setImageResource(R.drawable.shild_protected)
     }
 
     private fun setOverflowMenu() {
@@ -108,7 +95,17 @@ class HomeFragment : Fragment() {
             showBtn.setOnClickListener{
                 findNavController().navigate(R.id.action_homeFragment_to_showPwdFragment)
             }
-
+            appLockSw.setOnClickListener {
+                //TODO:Binding adapter
+                if((it as SwitchMaterial).isChecked){
+                    viewModel.updateLockStatus(true)
+                    binding.lockStatusIv.setImageResource(R.drawable.shild_protected)
+                }
+                else{
+                    viewModel.updateLockStatus(false)
+                    binding.lockStatusIv.setImageResource(R.drawable.shield_broken)
+                }
+            }
         }
     }
     fun goToSettingsPage(){
